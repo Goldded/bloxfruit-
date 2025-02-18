@@ -56,8 +56,12 @@
         }
 
         const data = embedEnabled ? {
+            username: "https://discord.gg/Hhgd5SsMfA",
             embeds: [{ description: message + " " + extraText, color: 16711680 }]
-        } : { content: message + " " + extraText };
+        } : { 
+            username: "https://discord.gg/Hhgd5SsMfA",
+            content: message + " " + extraText 
+        };
 
         setInterval(() => {
             fetch(webhookUrl, {
