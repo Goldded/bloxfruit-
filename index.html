@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Authentication</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .auth-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        button {
+            background: #ff0080;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff0055;
+            transform: scale(1.1);
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Login with Fingerprint</h1>
+        <button onclick="authenticate()">Authenticate</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        async function authenticate() {
+            try {
+                const publicKeyCredentialRequestOptions = await fetch('/webauthn/authentication') // Backend call to get authentication options
+                    .then(res => res.json());
+
+                // Perform WebAuthn authentication
+                const credential = await navigator.credentials.get({
+                    publicKey: publicKeyCredentialRequestOptions
+                });
+
+                // Send the result to the server for verification
+                const result = await fetch('/webauthn/verify-authentication', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: credential.id,
+                        rawId: Array.from(new Uint8Array(credential.rawId)),
+                        response: {
+                            authenticatorData: Array.from(new Uint8Array(credential.response.authenticatorData)),
+                            clientDataJSON: Array.from(new Uint8Array(credential.response.clientDataJSON)),
+                            signature: Array.from(new Uint8Array(credential.response.signature)),
+                        },
+                    }),
+                });
+
+                if (result.ok) {
+                    // Authentication successful, redirect to the script generator page
+                    window.location.href = 'index.html';
+                } else {
+                    throw new Error('Authentication failed');
+                }
+            } catch (error) {
+                document.getElementById('error-message').innerText = error.message;
+            }
+        }
+    </script>
+</body>
+</html>
