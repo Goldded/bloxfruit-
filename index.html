@@ -4,7 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLD SERVERS</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1f1c2c, #928dab);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #333;
+            border-radius: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .server {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .server:hover {
+            transform: scale(1.05);
+        }
+
+        .join-button {
+            background: linear-gradient(45deg, #FFD700, #FF4500);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-button::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, #FFD700, #FF4500, #FFD700);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .join-button:hover::before {
+            opacity: 1;
+        }
+
+        .join-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -58,6 +130,42 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function randomPlayers() {
+            return Math.floor(Math.random() * 13);
+        }
+
+        function updatePlayerCounts() {
+            document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
+            document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updatePlayerCounts();
+            setInterval(updatePlayerCounts, 3600000);
+        });
+
+        document.getElementById("feedback-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let username = document.getElementById("roblox-user").value;
+            let message = document.getElementById("feedback-message").value;
+
+            let webhookURL = "https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI";
+
+            let payload = {
+                content: `📢 **New Feedback**\n👤 **User:** ${username}\n💬 **Message:** ${message}`
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                alert("Feedback sent! Thank you.");
+                document.getElementById("feedback-form").reset();
+            }).catch(error => console.error("Error sending feedback:", error));
+        });
+    </script>
 </body>
 </html>
