@@ -1,98 +1,61 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLD SERVERS</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle, #1a1a2e, #16213e);
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        .header {
-            font-size: 2.5em;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            animation: glow 2s infinite alternate;
-        }
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ffd700; }
-            to { text-shadow: 0 0 20px #ffcc00; }
-        }
-        .server-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            margin: 15px auto;
-            border-radius: 15px;
-            width: 80%;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .server-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
-        }
-        .server-box a {
-            text-decoration: none;
-            color: #ffcc00;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .dashboard-box {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="dashboard-box">More private servers coming soon...</div>
-        <div class="header">GOLD SERVERS</div><div class="server-box">
-        <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
-        <p class="player-count" id="server1-count">Loading players...</p>
-    </div>
+    <header>
+        <h1>GOLD SERVERS</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Feedback</a>
+        </nav>
+    </header>
 
-    <div class="server-box">
-        <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
-        <p class="player-count" id="server2-count">Loading players...</p>
-    </div>
-</div>
+    <main>
+        <section class="server-list">
+            <h2>BloxFruit Private Servers</h2>
+            <div class="server">
+                <p>BloxFruit Server 1</p>
+                <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+                    <button>Join Server</button>
+                </a>
+                <p id="server1-count">Loading players...</p>
+            </div>
+            <div class="server">
+                <p>BloxFruit Server 2</p>
+                <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+                    <button>Join Server</button>
+                </a>
+                <p id="server2-count">Loading players...</p>
+            </div>
+        </section>
 
-<script>
-    function randomPlayers() {
-        return Math.floor(Math.random() * 13); // Generates a number between 0 and 12
-    }
+        <section class="dashboard">
+            <h2>Dashboard</h2>
+            <p>Other games - <strong>Coming Soon...</strong></p>
+        </section>
 
-    function updatePlayerCounts() {
-        document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
-        document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
-    }
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        updatePlayerCounts(); // Update immediately
-        setInterval(updatePlayerCounts, 3600000); // Update every hour
-    });
-</script>
+        <section class="feedback">
+            <h2>Report Bugs / Rate Our Site</h2>
+            <form id="feedback-form">
+                <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
+                <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </section>
 
+        <section class="advertisement">
+            <h2>Sponsored Ad</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/XwVzskUW6sM?autoplay=1&loop=1&playlist=XwVzskUW6sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <p>Click the ad to watch on YouTube!</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
