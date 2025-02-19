@@ -46,7 +46,6 @@
         transform: scale(1.05);
     }
 
-    /* 🔥 COOL ANIMATED JOIN BUTTON 🔥 */
     .join-button {
         background: linear-gradient(45deg, #FFD700, #FF4500);
         color: white;
@@ -61,7 +60,6 @@
         box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
     }
 
-    /* ✨ Glowing effect */
     .join-button:hover {
         transform: scale(1.1);
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
@@ -130,6 +128,28 @@
         </form>
     </section>
 </main>
+
+<script>
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('roblox-user').value;
+        const message = document.getElementById('feedback-message').value;
+        
+        fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: `Feedback from **${username}**: ${message}` })
+        }).then(response => {
+            if (response.ok) {
+                alert('Feedback sent successfully!');
+            } else {
+                alert('Error sending feedback.');
+            }
+        }).catch(error => {
+            alert('Error: ' + error.message);
+        });
+    });
+</script>
 
 </body>
 </html>
