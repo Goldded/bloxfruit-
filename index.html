@@ -1,82 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLD SERVERS</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1f1c2c, #928dab);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
             color: white;
             text-align: center;
             padding: 20px;
-        }
+        }header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background: #333;
-            border-radius: 10px;
-        }
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
+    nav a:hover {
+        color: #FFD700;
+    }
 
-        .server {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            margin: 10px auto;
-            width: 50%;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
+    .server {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        margin: 20px auto;
+        width: 60%;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s;
+    }
 
-        .server:hover {
-            transform: scale(1.05);
-        }
+    .server:hover {
+        transform: scale(1.05);
+    }
 
-        .join-button {
-            background: linear-gradient(45deg, #FFD700, #FF4500);
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
+    /* 🔥 COOL ANIMATED JOIN BUTTON 🔥 */
+    .join-button {
+        background: linear-gradient(45deg, #FFD700, #FF4500);
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+    }
 
-        .join-button::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(90deg, #FFD700, #FF4500, #FFD700);
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
+    /* ✨ Glowing effect */
+    .join-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
 
-        .join-button:hover::before {
-            opacity: 1;
-        }
+    .feedback-form {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        width: 50%;
+        margin: 20px auto;
+    }
 
-        .join-button:hover {
-            transform: scale(1.1);
-        }
-    </style>
+    input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        background: #FFD700;
+        color: black;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #FFC107;
+    }
+</style>
+
 </head>
 <body>
     <header>
@@ -86,86 +106,30 @@
             <a href="#">Dashboard</a>
             <a href="#">Feedback</a>
         </nav>
-    </header>
+    </header><main>
+    <section class="server">
+        <h2>BloxFruit Server 1</h2>
+        <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
 
-    <main>
-        <section class="server-list">
-            <h2>BloxFruit Private Servers</h2>
+    <section class="server">
+        <h2>BloxFruit Server 2</h2>
+        <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
 
-            <div class="server">
-                <p>BloxFruit Server 1</p>
-                <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-                    <button class="join-button">🚀 Join Server</button>
-                </a>
-                <p id="server1-count">Loading players...</p>
-            </div>
+    <section class="feedback-form">
+        <h2>Report Bugs / Rate Our Site</h2>
+        <form id="feedback-form">
+            <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
+            <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+</main>
 
-            <div class="server">
-                <p>BloxFruit Server 2</p>
-                <a href="https://www.roblox.com/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-                    <button class="join-button">🚀 Join Server</button>
-                </a>
-                <p id="server2-count">Loading players...</p>
-            </div>
-        </section>
-
-        <section class="dashboard">
-            <h2>Dashboard</h2>
-            <p>Other games - <strong>Coming Soon...</strong></p>
-        </section>
-
-        <section class="feedback">
-            <h2>Report Bugs / Rate Our Site</h2>
-            <form id="feedback-form">
-                <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
-                <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
-                <button type="submit">Submit Feedback</button>
-            </form>
-        </section>
-
-        <section class="advertisement">
-            <h2>Sponsored Ad</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/XwVzskUW6sM?autoplay=1&loop=1&playlist=XwVzskUW6sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <p>Click the ad to watch on YouTube!</p>
-        </section>
-    </main>
-
-    <script>
-        function randomPlayers() {
-            return Math.floor(Math.random() * 13);
-        }
-
-        function updatePlayerCounts() {
-            document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
-            document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            updatePlayerCounts();
-            setInterval(updatePlayerCounts, 3600000);
-        });
-
-        document.getElementById("feedback-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            let username = document.getElementById("roblox-user").value;
-            let message = document.getElementById("feedback-message").value;
-
-            let webhookURL = "https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI";
-
-            let payload = {
-                content: `📢 **New Feedback**\n👤 **User:** ${username}\n💬 **Message:** ${message}`
-            };
-
-            fetch(webhookURL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                alert("Feedback sent! Thank you.");
-                document.getElementById("feedback-form").reset();
-            }).catch(error => console.error("Error sending feedback:", error));
-        });
-    </script>
 </body>
 </html>
