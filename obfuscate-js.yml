@@ -1,0 +1,24 @@
+name: Auto-Obfuscate JavaScript
+
+on: [push]
+
+jobs:
+  obfuscate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Terser
+        run: npm install terser -g
+
+      - name: Obfuscate JS
+        run: terser script.js -o script.min.js -c -m
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add script.min.js
+          git commit -m "Auto-obfuscated JavaScript"
+          git push
