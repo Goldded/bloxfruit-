@@ -62,67 +62,36 @@
             font-size: 14px;
             font-weight: bold;
         }
-        .feedback-box {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 15px;
-            width: 80%;
-            margin: 20px auto;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 10px;
-            border: none;
-            font-size: 16px;
-        }
-        button {
-            background: #ffcc00;
-            color: black;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: #ffd700;
-        }
-        .ad-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            margin: 20px auto;
-            border-radius: 15px;
-            width: 80%;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-        .ad-container iframe {
-            width: 100%;
-            height: 315px;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="dashboard-box">More private servers coming soon...</div>
-        <div class="header">GOLD SERVERS</div><div class="ad-container">
-        <p><strong>Paid Advertisement</strong></p>
-        <a href="https://youtu.be/XwVzskUW6sM?si=XZCMfhXEeNHFu1xf" target="_blank">
-            <iframe src="https://www.youtube.com/embed/XwVzskUW6sM?autoplay=1&loop=1&playlist=XwVzskUW6sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </a>
-    </div>
-
-    <div class="server-box">
+        <div class="header">GOLD SERVERS</div><div class="server-box">
         <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
-        <p class="player-count" id="server1-count">Loading players...</p>
+        <p class="player-count" id="server1-count">Players: 0/12</p>
     </div>
 
     <div class="server-box">
         <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
-        <p class="player-count" id="server2-count">Loading players...</p>
+        <p class="player-count" id="server2-count">Players: 0/12</p>
     </div>
 </div>
+
+<script>
+    function randomPlayers() {
+        return Math.floor(Math.random() * 13); // Generates a number between 0 and 12
+    }
+
+    function updatePlayerCounts() {
+        document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
+        document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
+    }
+    
+    // Update player counts immediately and every hour
+    updatePlayerCounts();
+    setInterval(updatePlayerCounts, 3600000);
+</script>
 
 </body>
 </html>
