@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #1f1c2c, #928dab);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #333;
+    border-radius: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.server {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.server:hover {
+    transform: scale(1.05);
+}
+
+button {
+    background: gold;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #ffcc00;
+}
