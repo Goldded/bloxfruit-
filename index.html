@@ -69,12 +69,12 @@
         <div class="dashboard-box">More private servers coming soon...</div>
         <div class="header">GOLD SERVERS</div><div class="server-box">
         <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 1</a></p>
-        <p class="player-count" id="server1-count">Players: 0/12</p>
+        <p class="player-count" id="server1-count">Loading players...</p>
     </div>
 
     <div class="server-box">
         <p><a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Bloxfruit Server 2</a></p>
-        <p class="player-count" id="server2-count">Players: 0/12</p>
+        <p class="player-count" id="server2-count">Loading players...</p>
     </div>
 </div>
 
@@ -88,9 +88,10 @@
         document.getElementById("server2-count").innerText = `Players: ${randomPlayers()}/12`;
     }
     
-    // Update player counts immediately and every hour
-    updatePlayerCounts();
-    setInterval(updatePlayerCounts, 3600000);
+    document.addEventListener("DOMContentLoaded", function() {
+        updatePlayerCounts(); // Update immediately
+        setInterval(updatePlayerCounts, 3600000); // Update every hour
+    });
 </script>
 
 </body>
