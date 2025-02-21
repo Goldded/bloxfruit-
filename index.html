@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #2e003e, #5b0060, #3a0057);
+            background: linear-gradient(to right, #1e0033, #3b0073, #290050);
             color: white;
             text-align: center;
             padding: 20px;
@@ -19,12 +19,6 @@
         background: rgba(255, 255, 255, 0.1);
         border-radius: 15px;
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        animation: fadeInDown 1s ease-in-out;
-    }
-
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
     }
 
     nav a {
@@ -36,7 +30,7 @@
     }
 
     nav a:hover {
-        color: #FF00FF;
+        color: #FFD700;
     }
 
     .server, .giveaway {
@@ -51,11 +45,11 @@
 
     .server:hover, .giveaway:hover {
         transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     }
 
-    .giveaway-button {
-        background: linear-gradient(45deg, #FF00FF, #8A2BE2);
+    .join-button, .giveaway-button {
+        background: linear-gradient(45deg, #FFD700, #FF4500);
         color: white;
         padding: 15px 25px;
         border: none;
@@ -63,14 +57,12 @@
         font-size: 20px;
         border-radius: 8px;
         transition: all 0.3s ease-in-out;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(255, 0, 255, 0.5);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
     }
 
-    .giveaway-button:hover {
+    .join-button:hover, .giveaway-button:hover {
         transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
     input, textarea, button, select, input[type="file"] {
@@ -83,37 +75,42 @@
     }
 
     button {
-        background: #FF00FF;
+        background: #FFD700;
         color: black;
         cursor: pointer;
         transition: background 0.3s;
     }
 
     button:hover {
-        background: #DA70D6;
+        background: #FFC107;
     }
 
-    @keyframes glow {
-        0% { box-shadow: 0 0 5px #FF00FF; }
-        50% { box-shadow: 0 0 20px #FF00FF; }
-        100% { box-shadow: 0 0 5px #FF00FF; }
-    }
-
-    .glow {
-        animation: glow 2s infinite;
-    }
 </style>
 
 </head>
 <body>
     <header>
-        <h1 class="glow">GOLD SERVERS</h1>
+        <h1>GOLD SERVERS</h1>
         <nav>
             <a href="#">Home</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#feedback">Feedback</a>
         </nav>
-    </header><section class="giveaway" id="dashboard">
+    </header><section class="server">
+    <h2>BloxFruit Server 1</h2>
+    <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+        <button class="join-button">🚀 Join Server</button>
+    </a>
+</section>
+
+<section class="server">
+    <h2>BloxFruit Server 2</h2>
+    <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+        <button class="join-button">🚀 Join Server</button>
+    </a>
+</section>
+
+<section class="giveaway" id="dashboard">
     <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
     <p>To get Dragon, here's what you have to do:</p>
     <ol>
