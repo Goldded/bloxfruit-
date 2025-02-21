@@ -6,162 +6,149 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #3a0ca3, #7209b7, #560bad);
+            background: linear-gradient(to right, #2e003e, #5b0060, #3a0057);
             color: white;
             text-align: center;
             padding: 20px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #FFD700;
-        }
-        .server, .giveaway, .feedback-form, .ad-container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            margin: 20px auto;
-            width: 60%;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s;
-        }
-        .server:hover, .giveaway:hover, .feedback-form:hover, .ad-container:hover {
-            transform: scale(1.05);
-        }
-        .join-button, .giveaway-button, button {
-            background: linear-gradient(45deg, #9d4edd, #7209b7);
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.5);
-        }
-        .join-button:hover, .giveaway-button:hover, button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.8);
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .star-rating {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        .star {
-            font-size: 30px;
-            cursor: pointer;
-            color: #FFD700;
-            transition: transform 0.3s;
-        }
-        .star:hover, .star.selected {
-            transform: scale(1.2);
-        }
-    </style>
+            overflow-x: hidden;
+        }header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #FF00FF;
+    }
+
+    .server, .giveaway {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        margin: 20px auto;
+        width: 60%;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .server:hover, .giveaway:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+    }
+
+    .giveaway-button {
+        background: linear-gradient(45deg, #FF00FF, #8A2BE2);
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(255, 0, 255, 0.5);
+    }
+
+    .giveaway-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    }
+
+    input, textarea, button, select, input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        background: #FF00FF;
+        color: black;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #DA70D6;
+    }
+
+    @keyframes glow {
+        0% { box-shadow: 0 0 5px #FF00FF; }
+        50% { box-shadow: 0 0 20px #FF00FF; }
+        100% { box-shadow: 0 0 5px #FF00FF; }
+    }
+
+    .glow {
+        animation: glow 2s infinite;
+    }
+</style>
+
 </head>
 <body>
     <header>
-        <h1>GOLD SERVERS</h1>
+        <h1 class="glow">GOLD SERVERS</h1>
         <nav>
             <a href="#">Home</a>
             <a href="#dashboard">Dashboard</a>
             <a href="#feedback">Feedback</a>
         </nav>
-    </header><main>
-    <div class="ad-container">
-        <h2>🔥 Paid Advertisement 🔥</h2>
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/3dj_2Gw77KI?autoplay=1&loop=1&mute=1&playlist=3dj_2Gw77KI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <section class="server">
-        <h2>BloxFruit Server 1</h2>
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="join-button">🚀 Join Server</button>
-        </a>
-    </section>
-
-    <section class="server">
-        <h2>BloxFruit Server 2</h2>
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="join-button">🚀 Join Server</button>
-        </a>
-    </section>
-
-    <section class="giveaway" id="dashboard">
-        <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
-        <p>JOIN NOW BEFORE IT GETS FULL!</p>
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="giveaway-button">🐉 Join Giveaway</button>
-        </a>
-    </section>
-
-    <section class="feedback-form" id="feedback">
-        <h2>Report Bugs / Rate Our Site</h2>
-        <form id="feedback-form">
-            <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
-            <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
-            <div class="star-rating">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-            </div>
-            <button type="submit">Submit Feedback</button>
-        </form>
-    </section>
-</main>
+    </header><section class="giveaway" id="dashboard">
+    <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
+    <p>To get Dragon, here's what you have to do:</p>
+    <ol>
+        <li>Make or download my vids and upload them to YouTube (also copy my title and description).</li>
+        <li>Put my site link in your comment: <a href="https://linktr.ee/Gamerisgamer" target="_blank">https://linktr.ee/Gamerisgamer</a></li>
+        <li>Every 200 views you get, you earn 1 permanent Dragon.</li>
+    </ol>
+    <p>Send proof here:<br><strong>If you lie, you won't get anything.</strong></p>
+    <form id="dragon-proof-form">
+        <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
+        <input type="file" id="proof-file" accept="image/*" required>
+        <button type="submit" class="giveaway-button">📤 Send Proof</button>
+    </form>
+</section>
 
 <script>
-    let selectedRating = 0;
-
-    document.querySelectorAll('.star').forEach(star => {
-        star.addEventListener('click', function() {
-            selectedRating = this.getAttribute('data-value');
-            document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
-            for (let i = 0; i < selectedRating; i++) {
-                document.querySelectorAll('.star')[i].classList.add('selected');
-            }
-        });
-    });
-
-    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    document.getElementById('dragon-proof-form').addEventListener('submit', function(event) {
         event.preventDefault();
         const username = document.getElementById('roblox-user').value;
-        const message = document.getElementById('feedback-message').value;
+        const file = document.getElementById('proof-file').files[0];
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('payload_json', JSON.stringify({
+            content: `Dragon proof from **${username}**`
+        }));
 
         fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: `Feedback from **${username}**: ${message}\nRating: ${selectedRating} Stars` })
+            body: formData
         }).then(response => {
             if (response.ok) {
-                alert('Feedback sent successfully!');
+                alert('Proof sent successfully!');
             } else {
-                alert('Error sending feedback.');
+                alert('Error sending proof.');
             }
         }).catch(error => {
             alert('Error: ' + error.message);
