@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #1e0033, #3b0073, #290050);
+            background: linear-gradient(to right, #2e026d, #15162c);
             color: white;
             text-align: center;
             padding: 20px;
@@ -18,7 +18,13 @@
         padding: 15px 30px;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 15px;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+        to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
     }
 
     nav a {
@@ -33,22 +39,22 @@
         color: #FFD700;
     }
 
-    .server, .giveaway {
+    .server, .giveaway, .feedback-form, .ad-container {
         background: rgba(0, 0, 0, 0.7);
         padding: 20px;
         margin: 20px auto;
         width: 60%;
         border-radius: 15px;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s;
+        border: 1px solid #6a0dad;
     }
 
-    .server:hover, .giveaway:hover {
+    .server:hover, .giveaway:hover, .feedback-form:hover {
         transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     }
 
-    .join-button, .giveaway-button {
+    .join-button, .giveaway-button, button {
         background: linear-gradient(45deg, #FFD700, #FF4500);
         color: white;
         padding: 15px 25px;
@@ -60,82 +66,122 @@
         box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
     }
 
-    .join-button:hover, .giveaway-button:hover {
+    .join-button:hover, .giveaway-button:hover, button:hover {
         transform: scale(1.1);
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
-    input, textarea, button, select, input[type="file"] {
+    .fireflies {
+        position: fixed;
         width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
+        height: 100%;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        z-index: -1;
     }
 
-    button {
-        background: #FFD700;
-        color: black;
-        cursor: pointer;
-        transition: background 0.3s;
+    .firefly {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        border-radius: 50%;
+        animation: fly 10s infinite ease-in-out;
     }
 
-    button:hover {
-        background: #FFC107;
+    @keyframes fly {
+        0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+        50% { transform: translateY(-200px) translateX(200px); opacity: 1; }
+        100% { transform: translateY(0) translateX(0); opacity: 0.5; }
     }
-
 </style>
 
 </head>
 <body>
-    <header>
-        <h1>GOLD SERVERS</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#feedback">Feedback</a>
-        </nav>
-    </header><section class="server">
-    <h2>BloxFruit Server 1</h2>
-    <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-        <button class="join-button">🚀 Join Server</button>
-    </a>
-</section>
+    <div class="fireflies">
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+    </div><header>
+    <h1 style="color: #A020F0; animation: glow 2s infinite alternate;">GOLD SERVERS</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#feedback">Feedback</a>
+    </nav>
+</header>
 
-<section class="server">
-    <h2>BloxFruit Server 2</h2>
-    <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-        <button class="join-button">🚀 Join Server</button>
-    </a>
-</section>
+<main>
+    <div class="ad-container">
+        <h2>🔥 Paid Advertisement 🔥</h2>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/3dj_2Gw77KI?autoplay=1&loop=1&mute=1&playlist=3dj_2Gw77KI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
-<section class="giveaway" id="dashboard">
-    <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
-    <p>To get Dragon, here's what you have to do:</p>
-    <ol>
-        <li>Make or download my vids and upload them to YouTube (also copy my title and description).</li>
-        <li>Put my site link in your comment: <a href="https://linktr.ee/Gamerisgamer" target="_blank">https://linktr.ee/Gamerisgamer</a></li>
-        <li>Every 200 views you get, you earn 1 permanent Dragon.</li>
-    </ol>
-    <p>Send proof here:<br><strong>If you lie, you won't get anything.</strong></p>
-    <form id="dragon-proof-form">
-        <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
-        <input type="file" id="proof-file" accept="image/*" required>
-        <button type="submit" class="giveaway-button">📤 Send Proof</button>
-    </form>
-</section>
+    <section class="server">
+        <h2>BloxFruit Server 1</h2>
+        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
+
+    <section class="server">
+        <h2>BloxFruit Server 2</h2>
+        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
+
+    <section class="giveaway" id="dashboard">
+        <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
+        <p>To get Dragon, here's what you have to do:</p>
+        <ol>
+            <li>Make or download my vids and upload them to YouTube (use my title & description).</li>
+            <li>Put my site link in your comment: <a href="https://linktr.ee/Gamerisgamer" target="_blank">Gamerisgamer</a></li>
+            <li>Every 200 views you get, you earn 1 Permanent Dragon.</li>
+        </ol>
+        <p>Send proof here (if you lie, you won't get anything):</p>
+        <form id="proof-form">
+            <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
+            <input type="file" id="proof-file" accept="image/*" required>
+            <button type="submit" class="giveaway-button">📁 Send Proof</button>
+        </form>
+    </section>
+
+    <section class="feedback-form" id="feedback">
+        <h2>Report Bugs / Rate Our Site</h2>
+        <form id="feedback-form">
+            <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
+            <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+</main>
 
 <script>
-    document.getElementById('dragon-proof-form').addEventListener('submit', function(event) {
+    // Firefly generation
+    for (let i = 0; i < 20; i++) {
+        const firefly = document.createElement('div');
+        firefly.classList.add('firefly');
+        firefly.style.top = Math.random() * 100 + 'vh';
+        firefly.style.left = Math.random() * 100 + 'vw';
+        document.querySelector('.fireflies').appendChild(firefly);
+    }
+
+    // Proof submission
+    document.getElementById('proof-form').addEventListener('submit', function(event) {
         event.preventDefault();
         const username = document.getElementById('roblox-user').value;
         const file = document.getElementById('proof-file').files[0];
-
         const formData = new FormData();
+
         formData.append('file', file);
         formData.append('payload_json', JSON.stringify({
-            content: `Dragon proof from **${username}**`
+            embeds: [{
+                title: "Dragon Giveaway Proof",
+                description: `Proof from **${username}**`,
+                color: 3447003
+            }]
         }));
 
         fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
