@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(to right, #3a0ca3, #7209b7, #560bad);
             color: white;
             text-align: center;
             padding: 20px;
@@ -18,7 +18,7 @@
             padding: 15px 30px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         nav a {
             color: white;
@@ -30,20 +30,20 @@
         nav a:hover {
             color: #FFD700;
         }
-        .announcement-section, .server, .giveaway {
+        .server, .giveaway, .feedback-form, .ad-container {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             margin: 20px auto;
             width: 60%;
             border-radius: 15px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             transition: transform 0.3s;
         }
-        .announcement-section:hover, .server:hover, .giveaway:hover {
+        .server:hover, .giveaway:hover, .feedback-form:hover, .ad-container:hover {
             transform: scale(1.05);
         }
-        .join-button, .giveaway-button, .announce-button {
-            background: linear-gradient(45deg, #FFD700, #FF4500);
+        .join-button, .giveaway-button, button {
+            background: linear-gradient(45deg, #9d4edd, #7209b7);
             color: white;
             padding: 15px 25px;
             border: none;
@@ -51,22 +51,34 @@
             font-size: 20px;
             border-radius: 8px;
             transition: all 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.5);
         }
-        .join-button:hover, .giveaway-button:hover, .announce-button:hover {
+        .join-button:hover, .giveaway-button:hover, button:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.8);
         }
-        .announcement-display {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            margin: 20px auto;
-            width: 60%;
-            text-align: left;
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            color: #FFD700;
+            transition: transform 0.3s;
+        }
+        .star:hover, .star.selected {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -79,16 +91,20 @@
             <a href="#feedback">Feedback</a>
         </nav>
     </header><main>
-    <div class="announcement-section">
-        <h2>📢 Public Announcements</h2>
-        <div id="announcement-display" class="announcement-display">
-            <p>No announcements yet.</p>
-        </div>
-        <button class="announce-button" onclick="openAnnouncementPrompt()">➕ Post Announcement</button>
+    <div class="ad-container">
+        <h2>🔥 Paid Advertisement 🔥</h2>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/3dj_2Gw77KI?autoplay=1&loop=1&mute=1&playlist=3dj_2Gw77KI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <section class="server">
         <h2>BloxFruit Server 1</h2>
+        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
+
+    <section class="server">
+        <h2>BloxFruit Server 2</h2>
         <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
             <button class="join-button">🚀 Join Server</button>
         </a>
@@ -101,32 +117,56 @@
             <button class="giveaway-button">🐉 Join Giveaway</button>
         </a>
     </section>
+
+    <section class="feedback-form" id="feedback">
+        <h2>Report Bugs / Rate Our Site</h2>
+        <form id="feedback-form">
+            <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
+            <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
+            <div class="star-rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
 </main>
 
 <script>
-    let announcements = [];
+    let selectedRating = 0;
 
-    function openAnnouncementPrompt() {
-        const code = prompt("Enter admin code:");
-        if (code === "goldydagoat") {
-            const newAnnouncement = prompt("Enter your announcement:");
-            if (newAnnouncement) {
-                announcements.push(newAnnouncement);
-                updateAnnouncementDisplay();
+    document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('click', function() {
+            selectedRating = this.getAttribute('data-value');
+            document.querySelectorAll('.star').forEach(s => s.classList.remove('selected'));
+            for (let i = 0; i < selectedRating; i++) {
+                document.querySelectorAll('.star')[i].classList.add('selected');
             }
-        } else {
-            alert("Incorrect code. Access denied.");
-        }
-    }
+        });
+    });
 
-    function updateAnnouncementDisplay() {
-        const display = document.getElementById("announcement-display");
-        if (announcements.length === 0) {
-            display.innerHTML = "<p>No announcements yet.</p>";
-        } else {
-            display.innerHTML = announcements.map(ann => `<p>🔔 ${ann}</p>`).join("");
-        }
-    }
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('roblox-user').value;
+        const message = document.getElementById('feedback-message').value;
+
+        fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: `Feedback from **${username}**: ${message}\nRating: ${selectedRating} Stars` })
+        }).then(response => {
+            if (response.ok) {
+                alert('Feedback sent successfully!');
+            } else {
+                alert('Error sending feedback.');
+            }
+        }).catch(error => {
+            alert('Error: ' + error.message);
+        });
+    });
 </script>
 
 </body>
