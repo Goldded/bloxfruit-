@@ -33,6 +33,21 @@
             z-index: 1000;
         }
 
+        .ad-banner a {
+            color: #A020F0;
+            text-decoration: none;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .ad-banner a:hover {
+            background-color: #FFD700;
+            transform: scale(1.1);
+        }
+
         @keyframes slide {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -67,7 +82,8 @@
             color: #FFD700;
         }
 
-        .server, .feedback-form {
+        /* Sections */
+        .server, .trading-server, .feedback-form {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             margin: 20px auto;
@@ -75,13 +91,15 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             border: 1px solid #6a0dad;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .server:hover, .feedback-form:hover {
+        .server:hover, .trading-server:hover, .feedback-form:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
+        /* Fireflies */
         .fireflies {
             position: fixed;
             width: 100%;
@@ -112,6 +130,7 @@
             to { opacity: 1; }
         }
 
+        /* Buttons */
         .button {
             background-color: #FFD700;
             color: #000;
@@ -128,9 +147,9 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .server, .feedback-form {
+            .server, .trading-server, .feedback-form {
                 width: 90%;
             }
 
@@ -143,7 +162,10 @@
 <body>
 
     <!-- Paid Advertisement Banner -->
-    <div class="ad-banner">🔥 PAID ADVERTISEMENT: Join the Best Roblox Servers Today! 🔥</div>
+    <div class="ad-banner">
+        🐉 BloxFruit Permanent Dragon Giveaway! 🐉 
+        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Join!</a>
+    </div>
 
     <div class="fireflies">
         <!-- Fireflies effect -->
@@ -164,8 +186,16 @@
     </header>
 
     <main>
+        <!-- Main Server List -->
         <div id="server-list"></div>
 
+        <!-- Trading Servers -->
+        <section>
+            <h2 style="color: #FFD700;">💸 Trading Servers 💸</h2>
+            <div id="trading-server-list"></div>
+        </section>
+
+        <!-- Feedback Form -->
         <section class="feedback-form" id="feedback">
             <h2>Report Bugs / Rate Our Site</h2>
             <form id="feedback-form">
@@ -177,7 +207,7 @@
     </main>
 
     <script>
-        // Server List with Updated Link
+        // Server List with Updated Links
         const servers = [
             {
                 name: "BloxFruit Server 1",
@@ -189,13 +219,33 @@
             }
         ];
 
-        const serverList = document.getElementById('server-list');
+        const tradingServers = [
+            {
+                name: "Trading Server 1",
+                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
+            },
+            {
+                name: "Trading Server 2",
+                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
+            }
+        ];
 
+        // Populate Server List
+        const serverList = document.getElementById('server-list');
         servers.forEach(server => {
             const section = document.createElement('section');
             section.className = 'server';
             section.innerHTML = `<h2>${server.name}</h2><button class="button" onclick="window.open('${server.link}', '_blank')">Join Server</button>`;
             serverList.appendChild(section);
+        });
+
+        // Populate Trading Server List
+        const tradingServerList = document.getElementById('trading-server-list');
+        tradingServers.forEach(server => {
+            const section = document.createElement('section');
+            section.className = 'trading-server';
+            section.innerHTML = `<h2>${server.name}</h2><button class="button" onclick="window.open('${server.link}', '_blank')">Join Trading Server</button>`;
+            tradingServerList.appendChild(section);
         });
 
         // Feedback Form Submission
