@@ -45,27 +45,48 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             border: 1px solid #6a0dad;
         }
-        .server button, .giveaway button {
+        .fireflies {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .firefly {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: fly 10s infinite ease-in-out;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+            50% { transform: translateY(-200px) translateX(200px); opacity: 1; }
+            100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+        }
+        .button {
             background-color: #FFD700;
-            border: none;
-            padding: 10px 20px;
             color: #000;
-            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: bold;
         }
-        .server button:hover, .giveaway button:hover {
+        .button:hover {
             background-color: #FFA500;
         }
         .warning {
             color: #FF4500;
             font-weight: bold;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="fireflies"></div>
     <header>
         <h1 style="color: #A020F0; animation: glow 2s infinite alternate;">GOLD SERVERS</h1>
         <nav>
@@ -77,10 +98,15 @@
     <div id="server-list"></div>
 
     <section class="giveaway">
-        <h2>🐉 Dragon Giveaway!</h2>
-        <p>Join the giveaway and complete the challenges to win!</p>
-        <p class="warning">⚠️ If you try to skip all the challenges, you will not get anything!</p>
-        <button onclick="window.open('https://lootdest.org/s?Lx3KSO1X', '_blank')">Enter Giveaway</button>
+        <h2>🐉 Dragon Giveaway 🐉</h2>
+        <p class="warning">If you try to skip all the challenges, you will not get anything.</p>
+        <p>Complete <strong>6 times</strong> to claim your reward!</p>
+        <button class="button" id="giveaway-btn">Start Giveaway</button>
+        <div id="completion-count"></div>
+        <div id="username-form" style="display:none;">
+            <input type="text" id="roblox-username" placeholder="Enter your Roblox username" required>
+            <button class="button" id="submit-username">Submit</button>
+        </div>
     </section>
 
     <section class="feedback-form" id="feedback">
@@ -88,7 +114,7 @@
         <form id="feedback-form">
             <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
             <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
-            <button type="submit">Submit Feedback</button>
+            <button type="submit" class="button">Submit Feedback</button>
         </form>
     </section>
 </main>
@@ -110,11 +136,50 @@
     servers.forEach(server => {
         const section = document.createElement('section');
         section.className = 'server';
-        section.innerHTML = `
-            <h2>${server.name}</h2>
-            <button onclick="window.open('${server.link}', '_blank')">Join Server</button>
-        `;
+        section.innerHTML = `<h2>${server.name}</h2><button class="button" onclick="window.open('${server.link}', '_blank')">Join Server</button>`;
         serverList.appendChild(section);
+    });
+
+    let completionCount = 0;
+    const giveawayBtn = document.getElementById('giveaway-btn');
+    const completionDiv = document.getElementById('completion-count');
+    const usernameForm = document.getElementById('username-form');
+
+    giveawayBtn.addEventListener('click', () => {
+        window.open('https://lootdest.org/s?Lx3KSO1X', '_blank');
+        completionCount++;
+        completionDiv.innerHTML = `Completed: ${completionCount}/6`;
+
+        if (completionCount >= 6) {
+            giveawayBtn.style.display = 'none';
+            usernameForm.style.display = 'block';
+        }
+    });
+
+    document.getElementById('submit-username').addEventListener('click', () => {
+        const username = document.getElementById('roblox-username').value;
+        if (username) {
+            fetch('https://discord.com/api/webhooks/1306937711487225877/Ju3ztbYdukimRh_bqZMVZrWxslY77xBC26-XIAerse7EYgLJHIcviu4_QGcWKolQ3tpw', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: '🎉 Dragon Giveaway Completed! 🎉',
+                        description: `Roblox Username: **${username}**`,
+                        color: 0xFFD700
+                    }]
+                })
+            }).then(() => {
+                alert('Username submitted!');
+                usernameForm.style.display = 'none';
+            }).catch(() => {
+                alert('Failed to submit. Try again.');
+            });
+        } else {
+            alert('Please enter your Roblox username.');
+        }
     });
 
     document.getElementById('feedback-form').addEventListener('submit', (e) => {
