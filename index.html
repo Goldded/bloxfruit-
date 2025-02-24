@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLD SERVERS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #2e026d, #15162c);
@@ -14,45 +12,7 @@
             text-align: center;
             padding: 20px;
             overflow-x: hidden;
-            margin: 0;
         }
-
-        /* Advertisement Banner */
-        .ad-banner {
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 18px;
-            animation: slide 15s linear infinite;
-            white-space: nowrap;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .ad-banner a {
-            color: #A020F0;
-            text-decoration: none;
-            background: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-left: 10px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .ad-banner a:hover {
-            background-color: #FFD700;
-            transform: scale(1.1);
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
         header {
             display: flex;
             justify-content: space-between;
@@ -62,14 +22,11 @@
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             animation: glow 2s infinite alternate;
-            margin-top: 50px; /* To avoid ad overlap */
         }
-
         @keyframes glow {
             from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
             to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
         }
-
         nav a {
             color: white;
             text-decoration: none;
@@ -77,12 +34,33 @@
             font-weight: bold;
             transition: color 0.3s;
         }
-
         nav a:hover {
             color: #FFD700;
         }
-
-        /* Sections */
+        .advertisement {
+            background: #FFD700;
+            color: #000;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: slide 10s linear infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .advertisement a {
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #FFA500;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .advertisement a:hover {
+            background-color: #FF8C00;
+        }
         .server, .trading-server, .feedback-form {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
@@ -91,15 +69,20 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             border: 1px solid #6a0dad;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .server:hover, .trading-server:hover, .feedback-form:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        .button {
+            background-color: #FFD700;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-
-        /* Fireflies */
+        .button:hover {
+            background-color: #FFA500;
+        }
         .fireflies {
             position: fixed;
             width: 100%;
@@ -109,90 +92,51 @@
             left: 0;
             z-index: -1;
         }
-
         .firefly {
             position: absolute;
             width: 5px;
             height: 5px;
             background: #fff;
             border-radius: 50%;
-            animation: fly 10s infinite ease-in-out, twinkle 2s infinite alternate;
+            animation: fly 10s infinite ease-in-out;
         }
-
         @keyframes fly {
             0% { transform: translateY(0) translateX(0); opacity: 0.5; }
             50% { transform: translateY(-200px) translateX(200px); opacity: 1; }
             100% { transform: translateY(0) translateX(0); opacity: 0.5; }
         }
-
-        @keyframes twinkle {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
-        }
-
-        /* Buttons */
-        .button {
-            background-color: #FFD700;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .button:hover {
-            background-color: #FFA500;
-            transform: scale(1.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .server, .trading-server, .feedback-form {
-                width: 90%;
-            }
-
-            .ad-banner {
-                font-size: 16px;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Paid Advertisement Banner -->
-    <div class="ad-banner">
-        🐉 BloxFruit Permanent Dragon Giveaway! 🐉 
+    <!-- Fireflies Effect -->
+    <div class="fireflies"></div>
+
+    <!-- Advertisement Banner -->
+    <div class="advertisement">
+        🎉 BloxFruit Permanent Dragon Giveaway! 🎉
         <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Join!</a>
     </div>
 
-    <div class="fireflies">
-        <!-- Fireflies effect -->
-        <div class="firefly" style="top: 10%; left: 20%; animation-duration: 12s;"></div>
-        <div class="firefly" style="top: 40%; left: 70%; animation-duration: 8s;"></div>
-        <div class="firefly" style="top: 60%; left: 30%; animation-duration: 10s;"></div>
-        <div class="firefly" style="top: 80%; left: 50%; animation-duration: 14s;"></div>
-        <div class="firefly" style="top: 20%; left: 90%; animation-duration: 9s;"></div>
-    </div>
-
+    <!-- Header -->
     <header>
         <h1 style="color: #A020F0; animation: glow 2s infinite alternate;">GOLD SERVERS</h1>
         <nav>
             <a href="#">Home</a>
-            <a href="#dashboard">Dashboard</a>
+            <a href="#servers">Servers</a>
+            <a href="#trading">Trading</a>
             <a href="#feedback">Feedback</a>
         </nav>
     </header>
 
     <main>
-        <!-- Main Server List -->
-        <div id="server-list"></div>
+        <!-- Main Servers Section -->
+        <div id="servers"></div>
 
-        <!-- Trading Servers -->
-        <section>
-            <h2 style="color: #FFD700;">💸 Trading Servers 💸</h2>
-            <div id="trading-server-list"></div>
+        <!-- Trading Servers Section -->
+        <section class="trading-server" id="trading">
+            <h2>💸 Trading Servers 💸</h2>
+            <div id="trading-list"></div>
         </section>
 
         <!-- Feedback Form -->
@@ -207,7 +151,7 @@
     </main>
 
     <script>
-        // Server List with Updated Links
+        // List of Main Servers
         const servers = [
             {
                 name: "BloxFruit Server 1",
@@ -219,6 +163,7 @@
             }
         ];
 
+        // List of Trading Servers
         const tradingServers = [
             {
                 name: "Trading Server 1",
@@ -230,35 +175,66 @@
             }
         ];
 
-        // Populate Server List
-        const serverList = document.getElementById('server-list');
+        // Render Main Servers
+        const serverList = document.getElementById('servers');
         servers.forEach(server => {
             const section = document.createElement('section');
             section.className = 'server';
-            section.innerHTML = `<h2>${server.name}</h2><button class="button" onclick="window.open('${server.link}', '_blank')">Join Server</button>`;
+            section.innerHTML = `<h2>${server.name}</h2>
+            <button class="button" onclick="window.open('${server.link}', '_blank')">Join Server</button>`;
             serverList.appendChild(section);
         });
 
-        // Populate Trading Server List
-        const tradingServerList = document.getElementById('trading-server-list');
+        // Render Trading Servers
+        const tradingList = document.getElementById('trading-list');
         tradingServers.forEach(server => {
             const section = document.createElement('section');
-            section.className = 'trading-server';
-            section.innerHTML = `<h2>${server.name}</h2><button class="button" onclick="window.open('${server.link}', '_blank')">Join Trading Server</button>`;
-            tradingServerList.appendChild(section);
+            section.className = 'server';
+            section.innerHTML = `<h2>${server.name}</h2>
+            <button class="button" onclick="window.open('${server.link}', '_blank')">Join Trading</button>`;
+            tradingList.appendChild(section);
         });
 
-        // Feedback Form Submission
+        // Feedback Form with Discord Webhook Integration
         document.getElementById('feedback-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('feedback-user').value;
-            const message = document.getElementById('feedback-message').value;
+            const username = document.getElementById('feedback-user').value.trim();
+            const message = document.getElementById('feedback-message').value.trim();
 
             if (username && message) {
-                alert('Feedback submitted! Thank you.');
-                document.getElementById('feedback-form').reset();
+                const webhookURL = "https://discord.com/api/webhooks/1342415270697893909/cNhQkI1fYaeCJV6VNSLlCIjJDV9ng3MJg7In9uIGguI4TY8NlW1KZPuIZqMgojiJB1ks";
+
+                const payload = {
+                    embeds: [{
+                        title: "📝 New Feedback Received!",
+                        color: 0xFFD700,
+                        fields: [
+                            { name: "👤 Roblox Username", value: username, inline: true },
+                            { name: "💬 Feedback", value: message }
+                        ],
+                        footer: { text: "GOLD SERVERS Feedback" },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+
+                fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("✅ Feedback submitted successfully! Thank you.");
+                        document.getElementById('feedback-form').reset();
+                    } else {
+                        alert("❌ Failed to submit feedback. Please try again.");
+                    }
+                })
+                .catch(() => {
+                    alert("❌ Error sending feedback. Check your connection.");
+                });
             } else {
-                alert('Please fill out all fields.');
+                alert("⚠️ Please fill out all fields before submitting.");
             }
         });
     </script>
