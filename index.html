@@ -5,61 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VOID SERVERS</title>
     <style>
+        /* Import Poppins font from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+        /* Basic body styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #0d001a, #23004d);
-            color: white;
-            text-align: center;
+            background: linear-gradient(to right, #0d001a, #23004d); /* Gradient background */
+            color: white; /* White text */
+            text-align: center; /* Center align text */
             padding: 20px;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
         }
+
+        /* Header styles */
         header {
             padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
             border-radius: 15px;
-            box-shadow: 0 0 20px #6a0dad;
-            animation: glow 2s infinite alternate;
+            box-shadow: 0 0 20px #6a0dad; /* Shadow effect */
+            animation: glow 2s infinite alternate; /* Glowing animation */
         }
+
+        /* Button styles */
         .button {
-            background: linear-gradient(to right, #6a0dad, #9400D3);
+            background: linear-gradient(to right, #6a0dad, #9400D3); /* Gradient background */
             color: white;
             font-weight: bold;
             padding: 12px 20px;
-            border: none;
+            border: none; /* Remove default border */
             border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
             margin: 10px;
         }
+
+        /* Button hover effect */
         .button:hover {
-            background: linear-gradient(to right, #9400D3, #6a0dad);
-            box-shadow: 0 0 15px #6a0dad;
+            background: linear-gradient(to right, #9400D3, #6a0dad); /* Reverse gradient on hover */
+            box-shadow: 0 0 15px #6a0dad; /* Increased shadow on hover */
         }
 
-        /* Giveaway Popup */
+        /* Giveaway Popup styles */
         .popup {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
+            transform: translate(-50%, -50%); /* Center the popup */
+            background: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
             padding: 20px;
             width: 300px;
             border-radius: 15px;
             box-shadow: 0 0 15px #FFD700;
             text-align: center;
-            display: block; /* Show on page load */
-            animation: fadeIn 0.5s ease-out;
+            display: block; /* Show popup on page load */
+            animation: fadeIn 0.5s ease-out; /* Fade-in animation */
         }
+
+        /* Fade-in animation for the popup */
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
+
+        /* Popup heading styles */
         .popup h2 {
-            color: #FFD700;
+            color: #FFD700; /* Yellow color */
         }
+
+        /* Close button styles */
         .close-btn {
             position: absolute;
             top: 10px;
@@ -73,42 +87,91 @@
             border-radius: 5px;
             transition: 0.3s;
         }
+
+        /* Close button hover effect */
         .close-btn:hover {
-            background: #FF8C00;
+            background: #FF8C00; /* Orange color on hover */
         }
+
+        /* Small text styles */
         .small-text {
             font-size: 12px;
-            color: #FFD700;
+            color: #FFD700; /* Yellow color */
             margin-top: 5px;
         }
 
-        /* Feedback Form */
+        /* Feedback Form styles */
         .feedback-form {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
             padding: 20px;
             width: 60%;
             margin: auto;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Shadow effect */
             margin-top: 20px;
         }
+
+        /* Input and textarea styles */
         input, textarea {
             width: 90%;
             padding: 10px;
             margin: 10px;
-            border: none;
+            border: none; /* Remove default border */
             border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
             color: white;
             font-size: 1em;
         }
+
+        /* Textarea height */
         textarea {
             height: 100px;
+        }
+
+        /* Rating stars styles */
+        .rating {
+            display: inline-block;
+            position: relative;
+            font-size: 20px;
+            color: #FFD700;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: url('https://www.example.com/star-empty.png') no-repeat; /* Replace with your actual star-empty.png URL */
+            background-size: contain;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            background: url('https://www.example.com/star-filled.png') no-repeat; /* Replace with your actual star-filled.png URL */
+            background-size: contain;
+        }
+
+        .rating input:checked ~ label ~ label {
+            background: url('https://www.example.com/star-filled.png') no-repeat; /* Replace with your actual star-filled.png URL */
+            background-size: contain;
+        }
+
+        /* Styles for user count display */
+        .user-count {
+            font-size: 24px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <header>
         <h1 style="color: #9400D3; animation: glow 2s infinite alternate;">VOID SERVERS</h1>
@@ -127,11 +190,17 @@
     <!-- Main Content -->
     <main>
         <h2>🌌 BloxFruit Servers</h2>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server 1</button>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server 2</button>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server</button>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server</button>
 
         <h2>💸 Trading Servers</h2>
         <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Trading</button>
+
+        <h2>🔥 Event Servers</h2>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Mirage Hunting (V4)</button>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Leviathan Hunting</button>
+
+        <div class="user-count">1K+ Users</div>
 
         <!-- Feedback Form -->
         <section class="feedback-form" id="feedback">
@@ -139,39 +208,61 @@
             <form id="feedback-form">
                 <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
                 <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label for="star5"></label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4"></label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3"></label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2"></label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1"></label>
+                </div>
                 <button type="submit" class="button">Submit Feedback</button>
             </form>
         </section>
     </main>
 
     <script>
-        // Close Giveaway Winners Popup
+        // Function to close the Giveaway Winners Popup
         function closePopup() {
             document.getElementById('giveaway-popup').style.display = 'none';
         }
 
-        // Feedback Form Submission
+        // Event listener for Feedback Form submission
         document.getElementById('feedback-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission behavior
+
+            // Get username and message from the form
             const username = document.getElementById('feedback-user').value.trim();
             const message = document.getElementById('feedback-message').value.trim();
 
-            if (username && message) {
-                const webhookURL = "YOUR_DISCORD_WEBHOOK_URL_HERE"; // Change this
+            // Get the selected rating
+            const rating = document.querySelector('input[name="rating"]:checked')?.value;
 
+            // Check if all fields are filled
+            if (username && message && rating) {
+                // Discord Webhook URL (Replace with your actual URL)
+                const webhookURL = "https://discord.com/api/webhooks/1342415288687263765/fETgTKU3aTVtmRzJUuK9fBwJee3yuINkg6FicBid-Oy_zQMdUZl_7Vx602HlEgopVxET"; 
+
+                // Construct the payload for the Discord webhook
                 const payload = {
                     embeds: [{
-                        title: "📝 New Feedback Received!",
-                        color: 0xFFD700,
-                        fields: [
+                        title: "📝 New Feedback Received!", // Title of the embed
+                        color: 0xFFD700, // Yellow color for the embed
+                        fields: [ // Fields for username, message, and rating
                             { name: "👤 Roblox Username", value: username, inline: true },
-                            { name: "💬 Feedback", value: message }
+                            { name: "💬 Feedback", value: message },
+                            { name: "⭐ Rating", value: rating, inline: true }
                         ],
-                        footer: { text: "VOID SERVERS Feedback" },
-                        timestamp: new Date().toISOString()
+                        footer: { text: "VOID SERVERS Feedback" }, // Footer text
+                        timestamp: new Date().toISOString() // Current timestamp
                     }]
                 };
 
+                // Send the feedback to the Discord webhook
                 fetch(webhookURL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -180,7 +271,7 @@
                 .then(response => {
                     if (response.ok) {
                         alert("✅ Feedback submitted successfully! Thank you.");
-                        document.getElementById('feedback-form').reset();
+                        document.getElementById('feedback-form').reset(); // Reset the form
                     } else {
                         alert("❌ Failed to submit feedback.");
                     }
@@ -193,6 +284,5 @@
             }
         });
     </script>
-
 </body>
 </html>
