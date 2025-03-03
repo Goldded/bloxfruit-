@@ -5,143 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VOID SERVERS</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #2e026d, #15162c);
+            background: linear-gradient(to right, #0d001a, #23004d);
             color: white;
             text-align: center;
             padding: 20px;
             overflow-x: hidden;
         }
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 15px 30px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px #6a0dad;
             animation: glow 2s infinite alternate;
         }
-        @keyframes glow {
-            from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
-            to { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #FFD700;
-        }
-        .advertisement {
-            background: #FFD700;
-            color: #000;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            animation: slide 10s linear infinite;
-        }
-        @keyframes slide {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .advertisement a {
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #FFA500;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-        .advertisement a:hover {
-            background-color: #FF8C00;
-        }
-        .server, .trading-server, .feedback-form {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            margin: 20px auto;
-            width: 60%;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            border: 1px solid #6a0dad;
-        }
         .button {
-            background-color: #FFD700;
-            color: #000;
-            padding: 10px 20px;
+            background: linear-gradient(to right, #6a0dad, #9400D3);
+            color: white;
+            font-weight: bold;
+            padding: 12px 20px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
         }
         .button:hover {
-            background-color: #FFA500;
+            background: linear-gradient(to right, #9400D3, #6a0dad);
+            box-shadow: 0 0 15px #6a0dad;
         }
-        .fireflies {
+
+        /* Giveaway Popup */
+        .popup {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #FFD700;
+            text-align: center;
+            display: block; /* Show on page load */
+            animation: fadeIn 0.5s ease-out;
         }
-        .firefly {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .popup h2 {
+            color: #FFD700;
+        }
+        .close-btn {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            animation: fly 10s infinite ease-in-out;
+            top: 10px;
+            right: 15px;
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-        @keyframes fly {
-            0% { transform: translateY(0) translateX(0); opacity: 0.5; }
-            50% { transform: translateY(-200px) translateX(200px); opacity: 1; }
-            100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+        .close-btn:hover {
+            background: #FF8C00;
+        }
+        .small-text {
+            font-size: 12px;
+            color: #FFD700;
+            margin-top: 5px;
+        }
+
+        /* Feedback Form */
+        .feedback-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            width: 60%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+        }
+        textarea {
+            height: 100px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Fireflies Effect -->
-    <div class="fireflies"></div>
-
-    <!-- Advertisement Banner -->
-    <div class="advertisement">
-        🎉 BloxFruit Permanent Dragon Giveaway! 🎉
-        <a href="https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756" target="_blank">Join!</a>
-    </div>
-
     <!-- Header -->
     <header>
-        <h1 style="color: #A020F0; animation: glow 2s infinite alternate;">GOLD SERVERS</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#servers">Servers</a>
-            <a href="#trading">Trading</a>
-            <a href="#feedback">Feedback</a>
-        </nav>
+        <h1 style="color: #9400D3; animation: glow 2s infinite alternate;">VOID SERVERS</h1>
     </header>
 
-    <main>
-        <!-- Main Servers Section -->
-        <div id="servers"></div>
+    <!-- Giveaway Winners Popup (Auto Opens) -->
+    <div class="popup" id="giveaway-popup">
+        <button class="close-btn" onclick="closePopup()">X</button>
+        <h2>🏆 Giveaway Winners</h2>
+        <p>🥇 Mainarxd123</p>
+        <p>🥈 Supersecretspy5</p>
+        <p>🥉 Kajawh1</p>
+        <p class="small-text">Updates Everytime I upload a video</p>
+    </div>
 
-        <!-- Trading Servers Section -->
-        <section class="trading-server" id="trading">
-            <h2>💸 Trading Servers 💸</h2>
-            <div id="trading-list"></div>
-        </section>
+    <!-- Main Content -->
+    <main>
+        <h2>🌌 BloxFruit Servers</h2>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server 1</button>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Server 2</button>
+
+        <h2>💸 Trading Servers</h2>
+        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits', '_blank')">Join Trading</button>
 
         <!-- Feedback Form -->
         <section class="feedback-form" id="feedback">
-            <h2>Report Bugs / Rate Our Site</h2>
+            <h2>📝 Submit Feedback</h2>
             <form id="feedback-form">
                 <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
                 <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
@@ -151,58 +145,19 @@
     </main>
 
     <script>
-        // List of Main Servers
-        const servers = [
-            {
-                name: "BloxFruit Server 1",
-                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
-            },
-            {
-                name: "BloxFruit Server 2",
-                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
-            }
-        ];
+        // Close Giveaway Winners Popup
+        function closePopup() {
+            document.getElementById('giveaway-popup').style.display = 'none';
+        }
 
-        // List of Trading Servers
-        const tradingServers = [
-            {
-                name: "Trading Server 1",
-                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
-            },
-            {
-                name: "Trading Server 2",
-                link: "https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756"
-            }
-        ];
-
-        // Render Main Servers
-        const serverList = document.getElementById('servers');
-        servers.forEach(server => {
-            const section = document.createElement('section');
-            section.className = 'server';
-            section.innerHTML = `<h2>${server.name}</h2>
-            <button class="button" onclick="window.open('${server.link}', '_blank')">Join Server</button>`;
-            serverList.appendChild(section);
-        });
-
-        // Render Trading Servers
-        const tradingList = document.getElementById('trading-list');
-        tradingServers.forEach(server => {
-            const section = document.createElement('section');
-            section.className = 'server';
-            section.innerHTML = `<h2>${server.name}</h2>
-            <button class="button" onclick="window.open('${server.link}', '_blank')">Join Trading</button>`;
-            tradingList.appendChild(section);
-        });
-
-        // Feedback Form with Discord Webhook Integration
+        // Feedback Form Submission
         document.getElementById('feedback-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const username = document.getElementById('feedback-user').value.trim();
             const message = document.getElementById('feedback-message').value.trim();
 
             if (username && message) {
-                const webhookURL = "https://discord.com/api/webhooks/1342415270697893909/cNhQkI1fYaeCJV6VNSLlCIjJDV9ng3MJg7In9uIGguI4TY8NlW1KZPuIZqMgojiJB1ks";
+                const webhookURL = "YOUR_DISCORD_WEBHOOK_URL_HERE"; // Change this
 
                 const payload = {
                     embeds: [{
@@ -227,14 +182,14 @@
                         alert("✅ Feedback submitted successfully! Thank you.");
                         document.getElementById('feedback-form').reset();
                     } else {
-                        alert("❌ Failed to submit feedback. Please try again.");
+                        alert("❌ Failed to submit feedback.");
                     }
                 })
                 .catch(() => {
-                    alert("❌ Error sending feedback. Check your connection.");
+                    alert("❌ Error sending feedback.");
                 });
             } else {
-                alert("⚠️ Please fill out all fields before submitting.");
+                alert("⚠️ Please fill out all fields.");
             }
         });
     </script>
