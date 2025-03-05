@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #000, #111);
+            background: #000; /* Black background */
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -119,16 +119,22 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: 400px;
             max-width: 90%; /* Adjust for mobile */
+            display: flex; /* Center content */
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
         }
 
         .embed-title {
             font-size: 1.5em;
             margin-bottom: 10px;
+            animation: glow 1s infinite alternate;
         }
 
         .embed-body {
             font-size: 1.2em;
             margin-bottom: 10px;
+            animation: fade 2s infinite alternate;
         }
 
         #join-button {
@@ -141,6 +147,7 @@
             font-size: 1em;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
+            animation: pulse 1s infinite alternate;
         }
 
         #join-button:hover {
