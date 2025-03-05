@@ -3,199 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fisch Private Server Generator</title>
+    <title>Bloxfruit Permanent Fruit Giveaway</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
-        }
-
         body {
-            background: #000;
-            color: #0ff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000, #111);
+            color: #fff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            justify-content: center;
+            min-height: 100vh;
             overflow: hidden;
+            text-align: center;
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px #0ff;
-            animation: fadeIn 1s ease-in-out;
-            width: 300px;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            perspective: 1000px;
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 5px #0ff, 0 0 10px #00f;
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            box-shadow: 0 0 5px #fff;
         }
 
-        #playerCount {
-            font-size: 20px;
-            margin-bottom: 15px;
-            animation: glow 1.5s infinite alternate;
+        .sun {
+            width: 80px;
+            height: 80px;
+            background-color: #ffcc00;
+            animation: sun-glow 2s infinite alternate;
         }
 
-        button {
-            background: black;
-            color: cyan;
-            border: 2px solid cyan;
+        .mercury {
+            width: 15px;
+            height: 15px;
+            background-color: #999;
+            animation: mercury-orbit 8s linear infinite;
+        }
+
+        .venus {
+            width: 20px;
+            height: 20px;
+            background-color: #f08080;
+            animation: venus-orbit 12s linear infinite;
+        }
+
+        .earth {
+            width: 25px;
+            height: 25px;
+            background-color: #336699;
+            animation: earth-orbit 15s linear infinite;
+        }
+
+        .mars {
+            width: 20px;
+            height: 20px;
+            background-color: #cc6633;
+            animation: mars-orbit 20s linear infinite;
+        }
+
+        .jupiter {
+            width: 50px;
+            height: 50px;
+            background-color: #ccaa66;
+            animation: jupiter-orbit 30s linear infinite;
+        }
+
+        .saturn {
+            width: 40px;
+            height: 40px;
+            background-color: #c0c0c0;
+            animation: saturn-orbit 40s linear infinite;
+        }
+
+        .saturn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            opacity: 0.5;
+            border-radius: 2px;
+        }
+
+        .uranus {
+            width: 30px;
+            height: 30px;
+            background-color: #add8e6;
+            animation: uranus-orbit 50s linear infinite;
+        }
+
+        .neptune {
+            width: 35px;
+            height: 35px;
+            background-color: #000080;
+            animation: neptune-orbit 60s linear infinite;
+        }
+
+        .embed-container {
+            background-color: #2f3136;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            max-width: 90%; /* Adjust for mobile */
+        }
+
+        .embed-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .embed-body {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        #join-button {
+            background-color: #5865f2; /* Discord blue */
+            color: #fff;
             padding: 10px 20px;
-            font-size: 18px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 10px cyan;
+            font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background: cyan;
-            color: black;
-            box-shadow: 0 0 20px cyan;
+        #join-button:hover {
+            background-color: #46529b;
         }
 
-        .join {
+        .status {
             margin-top: 10px;
-            display: none; /* Hidden initially */
+            color: #fff;
         }
 
-        /* Loading Bar */
-        .loading-container {
-            display: none;
-            width: 100%;
-            background: #111;
-            border-radius: 5px;
-            margin-top: 10px;
-            height: 10px;
-            overflow: hidden;
-        }
-
-        .loading-bar {
-            width: 0%;
-            height: 100%;
-            background: cyan;
-            transition: width 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
+        /* Animations */
         @keyframes glow {
-            from { text-shadow: 0 0 5px cyan; }
-            to { text-shadow: 0 0 15px cyan; }
+            from {
+                text-shadow: 2px 2px 5px #000;
+            }
+            to {
+                text-shadow: 5px 5px 10px #fff; 
+            }
         }
 
-        @keyframes dots {
-            0% { content: "."; }
-            33% { content: ".."; }
-            66% { content: "..."; }
-            100% { content: ""; }
+        @keyframes fade {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.5;
+            }
         }
 
-        .loading-text::after {
-            content: ".";
-            animation: dots 1.5s infinite steps(1);
+        @keyframes pulse {
+            from {
+                box-shadow: 3px 3px 5px #000;
+            }
+            to {
+                box-shadow: 5px 5px 10px #fff;
+            }
+        }
+
+        @keyframes sun-glow {
+            from {
+                box-shadow: 0 0 10px #ffcc00;
+            }
+            to {
+                box-shadow: 0 0 20px #ffcc00;
+            }
+        }
+
+        @keyframes mercury-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(100px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(100px, 0);
+            }
+        }
+
+        @keyframes venus-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(150px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(150px, 0);
+            }
+        }
+
+        @keyframes earth-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(200px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(200px, 0);
+            }
+        }
+
+        @keyframes mars-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(250px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(250px, 0);
+            }
+        }
+
+        @keyframes jupiter-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(300px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(300px, 0);
+            }
+        }
+
+        @keyframes saturn-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(350px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(350px, 0);
+            }
+        }
+
+        @keyframes uranus-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(400px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(400px, 0);
+            }
+        }
+
+        @keyframes neptune-orbit {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg) translate(450px, 0);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg) translate(450px, 0);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Fisch Private Server Generator</h1>
-        <p id="playerCount">Players: --/15</p>
-        <button id="generateBtn">Generate</button>
-        <div class="loading-container">
-            <div class="loading-bar"></div>
+        <div class="sun planet"></div>
+        <div class="mercury planet"></div>
+        <div class="venus planet"></div>
+        <div class="earth planet"></div>
+        <div class="mars planet"></div>
+        <div class="jupiter planet"></div>
+        <div class="saturn planet"></div>
+        <div class="uranus planet"></div>
+        <div class="neptune planet"></div>
+    </div>
+
+    <div class="embed-container">
+        <h1 class="embed-title">Bloxfruit Permanent Fruit Giveaway</h1>
+        <p class="embed-body">Join Now for a Chance to Win!</p>
+        <button id="join-button">Join</button>
+        <div class="status">
+            <p>Status: <span id="status">Live</span></p>
         </div>
-        <a id="joinBtn" href="https://www.roblox.et/games/16732694052/Fisch-MOBY?privateServerLinkCode=59816836148209918793607839663756" target="_blank">
-            <button class="join">Join</button>
-        </a>
     </div>
 
     <script>
-        document.getElementById("generateBtn").addEventListener("click", function() {
-            let generateBtn = document.getElementById("generateBtn");
-            let playerCount = document.getElementById("playerCount");
-            let loadingBar = document.querySelector(".loading-bar");
-            let loadingContainer = document.querySelector(".loading-container");
-            let joinBtn = document.querySelector(".join");
+        const joinButton = document.getElementById('join-button');
 
-            if (generateBtn.disabled) return; // Prevent multiple clicks
-
-            generateBtn.disabled = true;
-            generateBtn.innerText = "Generating";
-            generateBtn.classList.add("loading-text");
-            playerCount.innerText = "Generating...";
-
-            loadingContainer.style.display = "block";
-            loadingBar.style.width = "0%";
-
-            let waitTime = 10; // Fixed 10-second wait time
-            let interval = waitTime * 10; // Smooth progress bar
-
-            let progress = 0;
-            let progressInterval = setInterval(() => {
-                progress += 100 / interval;
-                loadingBar.style.width = `${progress}%`;
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                }
-            }, 100);
-
-            setTimeout(() => {
-                let randomPlayers = Math.floor(Math.random() * 16); 
-                playerCount.innerText = `Players: ${randomPlayers}/15`;
-
-                generateBtn.innerText = "Generate";
-                generateBtn.classList.remove("loading-text");
-                generateBtn.disabled = false;
-
-                loadingContainer.style.display = "none";
-                joinBtn.style.display = "block"; // Show join button after loading
-
-                // Send webhook message
-                sendWebhook(randomPlayers);
-            }, waitTime * 1000);
+        joinButton.addEventListener('click', () => {
+            window.location.href = 'https://www.roblox.et/games/2753915549/Blox-Fruits?privateServerLinkCode=59816836148209918793607839663756'; 
         });
-
-        function sendWebhook(playerCount) {
-            let webhookUrl = "https://discord.com/api/webhooks/1342415288687263765/fETgTKU3aTVtmRzJUuK9fBwJee3yuINkg6FicBid-Oy_zQMdUZl_7Vx602HlEgopVxET";
-            
-            let embed = {
-                "embeds": [{
-                    "title": "🔹 Private Server Generated 🔹",
-                    "description": `A private server was generated with **${playerCount}/15** players.`,
-                    "color": 3447003, // Cyan color
-                    "fields": [
-                        {
-                            "name": "🔗 Server Link",
-                            "value": "[Click to Join](https://www.roblox.et/games/16732694052/Fisch-MOBY?privateServerLinkCode=59816836148209918793607839663756)"
-                        }
-                    ],
-                    "footer": {
-                        "text": "Fisch Private Server Generator"
-                    }
-                }]
-            };
-
-            fetch(webhookUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(embed)
-            });
-        }
     </script>
 </body>
 </html>
+
