@@ -18,97 +18,37 @@
             text-align: center;
         }
 
-        .container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            margin: 50px auto;
-            perspective: 1000px;
-        }
-
-        .planet {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .eye {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            box-shadow: 0 0 5px #fff;
+            background-color: #fff;
+            position: relative;
+            margin: 50px auto;
+            animation: eye-blink 5s infinite;
         }
 
-        .sun {
+        .iris {
             width: 80px;
             height: 80px;
-            background-color: #ffcc00;
-            animation: sun-glow 2s infinite alternate;
-        }
-
-        .mercury {
-            width: 15px;
-            height: 15px;
-            background-color: #999;
-            animation: mercury-orbit 8s linear infinite;
-        }
-
-        .venus {
-            width: 20px;
-            height: 20px;
-            background-color: #f08080;
-            animation: venus-orbit 12s linear infinite;
-        }
-
-        .earth {
-            width: 25px;
-            height: 25px;
-            background-color: #336699;
-            animation: earth-orbit 15s linear infinite;
-        }
-
-        .mars {
-            width: 20px;
-            height: 20px;
-            background-color: #cc6633;
-            animation: mars-orbit 20s linear infinite;
-        }
-
-        .jupiter {
-            width: 50px;
-            height: 50px;
-            background-color: #ccaa66;
-            animation: jupiter-orbit 30s linear infinite;
-        }
-
-        .saturn {
-            width: 40px;
-            height: 40px;
-            background-color: #c0c0c0;
-            animation: saturn-orbit 40s linear infinite;
-        }
-
-        .saturn::before {
-            content: '';
+            background-color: #000;
+            border-radius: 50%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 30px;
-            height: 3px;
-            background-color: #fff;
-            opacity: 0.5;
-            border-radius: 2px;
+            animation: iris-move 5s linear infinite;
         }
 
-        .uranus {
-            width: 30px;
-            height: 30px;
-            background-color: #add8e6;
-            animation: uranus-orbit 50s linear infinite;
-        }
-
-        .neptune {
-            width: 35px;
-            height: 35px;
-            background-color: #000080;
-            animation: neptune-orbit 60s linear infinite;
+        .pupil {
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .embed-container {
@@ -118,11 +58,11 @@
             margin-top: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: 400px;
-            max-width: 90%; /* Adjust for mobile */
-            display: flex; /* Center content */
+            max-width: 90%; 
+            display: flex; 
             flex-direction: column;
-            align-items: center; /* Center horizontally */
-            justify-content: center; /* Center vertically */
+            align-items: center; 
+            justify-content: center; 
         }
 
         .embed-title {
@@ -138,7 +78,7 @@
         }
 
         #join-button {
-            background-color: #5865f2; /* Discord blue */
+            background-color: #5865f2; 
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -187,99 +127,33 @@
             }
         }
 
-        @keyframes sun-glow {
-            from {
-                box-shadow: 0 0 10px #ffcc00;
+        @keyframes eye-blink {
+            0% {
+                transform: translateY(0);
             }
-            to {
-                box-shadow: 0 0 20px #ffcc00;
+            50% {
+                transform: translateY(-5px);
             }
-        }
-
-        @keyframes mercury-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(100px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(100px, 0);
+            100% {
+                transform: translateY(0);
             }
         }
 
-        @keyframes venus-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(150px, 0);
+        @keyframes iris-move {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
             }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(150px, 0);
-            }
-        }
-
-        @keyframes earth-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(200px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(200px, 0);
-            }
-        }
-
-        @keyframes mars-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(250px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(250px, 0);
-            }
-        }
-
-        @keyframes jupiter-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(300px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(300px, 0);
-            }
-        }
-
-        @keyframes saturn-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(350px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(350px, 0);
-            }
-        }
-
-        @keyframes uranus-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(400px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(400px, 0);
-            }
-        }
-
-        @keyframes neptune-orbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg) translate(450px, 0);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg) translate(450px, 0);
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="sun planet"></div>
-        <div class="mercury planet"></div>
-        <div class="venus planet"></div>
-        <div class="earth planet"></div>
-        <div class="mars planet"></div>
-        <div class="jupiter planet"></div>
-        <div class="saturn planet"></div>
-        <div class="uranus planet"></div>
-        <div class="neptune planet"></div>
+    <div class="eye">
+        <div class="iris">
+            <div class="pupil"></div>
+        </div>
     </div>
 
     <div class="embed-container">
