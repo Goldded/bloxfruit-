@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Permanent Fruits Giveaway</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Minecraft', sans-serif;
+        }
+
         body {
             background-color: #0a0a0a;
             color: white;
-            font-family: 'Orbitron', sans-serif;
             text-align: center;
-            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
@@ -23,34 +29,28 @@
             padding: 25px;
             border-radius: 12px;
             width: 420px;
+            border: 3px solid #444;
+            box-shadow: 0px 0px 10px #00ffcc;
             transition: transform 0.3s ease-in-out;
-            border: 2px solid #333;
-        }
-
-        .container:hover {
-            transform: scale(1.03);
         }
 
         .title {
-            font-size: 26px;
+            font-size: 28px;
             margin-bottom: 8px;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 5px #00ffcc;
         }
 
         input, select, button {
-            width: 92%;
+            width: 100%;
             padding: 12px;
             margin-top: 12px;
-            border: none;
-            outline: none;
+            border: 3px solid #555;
+            background: #181818;
+            color: white;
             font-size: 16px;
             border-radius: 6px;
             transition: all 0.3s ease-in-out;
-        }
-
-        input, select {
-            background: #181818;
-            color: white;
         }
 
         button {
@@ -58,16 +58,18 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
+            border: 3px solid #00ffcc;
         }
 
         button:hover {
             background: #505050;
             transform: scale(1.07);
+            box-shadow: 0px 0px 8px #00ffcc;
         }
 
-        .loading-bar {
+        .loading-container {
             width: 100%;
-            height: 5px;
+            height: 8px;
             background: #111;
             border-radius: 5px;
             overflow: hidden;
@@ -75,10 +77,10 @@
             display: none;
         }
 
-        .loading-progress {
+        .loading-bar {
             width: 0;
             height: 100%;
-            background: white;
+            background: #00ffcc;
             transition: width 3s ease-in-out;
         }
 
@@ -90,9 +92,12 @@
             background: rgba(30, 30, 30, 0.95);
             padding: 20px;
             border-radius: 8px;
-            width: 300px;
+            width: 320px;
             text-align: center;
             opacity: 0;
+            backdrop-filter: blur(8px);
+            border: 3px solid #00ffcc;
+            box-shadow: 0px 0px 10px #00ffcc;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
@@ -100,35 +105,15 @@
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
-
-        .popup p {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .popup button {
-            background: #505050;
-            margin-top: 10px;
-            padding: 10px;
-            width: 80%;
-            font-size: 16px;
-        }
-
-        a {
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1 class="title">Permanent Fruits Giveaway</h1>
+        <h1 class="title">🎁 Permanent Fruits Giveaway 🎁</h1>
         <p>Enter your Roblox username and select your fruit.</p>
 
         <input type="text" id="username" placeholder="Enter your Roblox username">
-
         <select id="fruit">
             <option value="" disabled selected>Choose a Permanent Fruit</option>
             <option>Permanent Dragon</option>
@@ -137,27 +122,12 @@
             <option>Permanent Mammoth</option>
             <option>Permanent T-Rex</option>
             <option>Permanent Dough</option>
-            <option>Permanent Venom</option>
-            <option>Permanent Shadow</option>
-            <option>Permanent Buddha</option>
-            <option>Permanent Phoenix</option>
-            <option>Permanent Light</option>
-            <option>Permanent Dark</option>
-            <option>Permanent Ice</option>
-            <option>Permanent Magma</option>
-            <option>Permanent Rubber</option>
-            <option>Permanent Gravity</option>
-            <option>Permanent Control</option>
-            <option>Permanent Rumble</option>
-            <option>Permanent Barrier</option>
-            <option>Permanent Diamond</option>
-            <option>Permanent Love</option>
+            <option>Permanent Yeti</option>
         </select>
 
         <button id="enterBtn">Enter</button>
-
-        <div class="loading-bar" id="loading">
-            <div class="loading-progress"></div>
+        <div class="loading-container" id="loading">
+            <div class="loading-bar"></div>
         </div>
     </div>
 
@@ -170,28 +140,53 @@
     </div>
 
     <script>
-        document.getElementById("enterBtn").addEventListener("click", function() {
+        const webhookURL = "https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI";
+
+        document.getElementById("enterBtn").addEventListener("click", async function() {
             let username = document.getElementById("username").value.trim();
             let fruit = document.getElementById("fruit").value;
-            let loadingDiv = document.getElementById("loading");
-            let progressDiv = document.querySelector(".loading-progress");
+            let loadingBar = document.querySelector(".loading-bar");
+            let loadingContainer = document.getElementById("loading");
             let popup = document.getElementById("popup");
 
-            if (username === "" || fruit === null || fruit === "") {
+            if (!username || !fruit) {
                 alert("❌ Please enter your username and select a fruit!");
                 return;
             }
 
-            loadingDiv.style.display = "block";
-            progressDiv.style.width = "0%";
+            loadingContainer.style.display = "block";
+            loadingBar.style.width = "0%";
 
             setTimeout(() => {
-                progressDiv.style.width = "100%";
-            }, 50);
+                loadingBar.style.width = "100%";
+            }, 100);
 
-            setTimeout(() => {
-                loadingDiv.style.display = "none";
+            setTimeout(async () => {
+                loadingContainer.style.display = "none";
                 popup.classList.add("show");
+
+                let avatarURL = `https://www.rolimons.com/avatar/${username}`;
+
+                let embed = {
+                    "username": "Permanent Fruit Giveaway",
+                    "avatar_url": "https://static.wikia.nocookie.net/blox-fruits/images/8/8d/DragonFruitIcon.png",
+                    "embeds": [
+                        {
+                            "title": "🎁 New Giveaway Entry!",
+                            "description": `**Roblox User:** [${username}](https://pornhub.com)\n**Selected Fruit:** ${fruit}`,
+                            "color": 3066993,
+                            "thumbnail": { "url": avatarURL },
+                            "footer": { "text": "BloxFruits Giveaway Bot" }
+                        }
+                    ]
+                };
+
+                await fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(embed)
+                });
+
             }, 3000);
         });
     </script>
