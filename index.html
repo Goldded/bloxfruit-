@@ -14,8 +14,8 @@
         }
 
         body {
-            background-color: #0a0a0a;
-            color: white;
+            background-color: #121212;
+            color: #e0e0e0;
             text-align: center;
             display: flex;
             align-items: center;
@@ -25,49 +25,50 @@
         }
 
         .container {
-            background: rgba(20, 20, 20, 0.95);
+            background: #1e1e1e;
             padding: 25px;
             border-radius: 12px;
             width: 420px;
-            border: 3px solid #444;
-            box-shadow: 0px 0px 10px #00ffcc;
+            border: 2px solid #333;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .title {
             font-size: 28px;
             margin-bottom: 8px;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 5px #00ffcc;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            color: #f39c12;
         }
 
         input, button {
             width: 100%;
             padding: 12px;
             margin-top: 12px;
-            border: 3px solid #555;
-            background: #181818;
-            color: white;
+            border: 2px solid #333;
+            background: #2c2c2c;
+            color: #e0e0e0;
             font-size: 16px;
             border-radius: 6px;
             transition: all 0.3s ease-in-out;
         }
 
         button {
-            background: #292929;
-            color: white;
+            background: #f39c12;
+            border: 2px solid #f39c12;
+            color: #121212;
             font-weight: bold;
             cursor: pointer;
-            border: 3px solid #00ffcc;
         }
 
         button:hover {
-            background: #505050;
-            transform: scale(1.07);
-            box-shadow: 0px 0px 8px #00ffcc;
+            background: #e67e22;
+            border-color: #e67e22;
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .popup {
@@ -75,15 +76,15 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            background: rgba(30, 30, 30, 0.95);
+            background: #1e1e1e;
             padding: 20px;
             border-radius: 8px;
             width: 320px;
             text-align: center;
             opacity: 0;
             backdrop-filter: blur(8px);
-            border: 3px solid #00ffcc;
-            box-shadow: 0px 0px 10px #00ffcc;
+            border: 2px solid #333;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
@@ -101,25 +102,26 @@
         }
 
         .fruit-item {
-            background: #222;
+            background: #2c2c2c;
             padding: 10px;
             border-radius: 6px;
-            border: 3px solid #00ffcc;
+            border: 2px solid #333;
             cursor: pointer;
             transition: 0.3s;
             width: 90px;
             text-align: center;
+            color: #f39c12;
         }
 
         .fruit-item:hover {
-            background: #505050;
+            background: #333;
             transform: scale(1.1);
         }
 
         .selected-fruit {
             margin-top: 10px;
             font-size: 18px;
-            color: #00ffcc;
+            color: #f39c12;
         }
 
         .loading-ui {
@@ -128,24 +130,57 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(20, 20, 20, 0.9);
+            background: #1e1e1e;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            border: 3px solid #00ffcc;
-            box-shadow: 0px 0px 10px #00ffcc;
+            border: 2px solid #333;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .message {
             margin-top: 12px;
             font-size: 16px;
             font-weight: bold;
-            color: #ff4444;
+            color: #e74c3c;
             display: none;
         }
 
         .success {
-            color: #00ffcc;
+            color: #27ae60;
+        }
+
+        .roblox-button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            background-color: #ff0000;
+            border: 2px solid #ff0000;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .roblox-button:hover {
+            background-color: #cc0000;
+            border-color: #cc0000;
+        }
+
+        .custom-button {
+            background: #3498db;
+            border: 2px solid #3498db;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        .custom-button:hover {
+            background: #2980b9;
+            border-color: #2980b9;
         }
 
     </style>
@@ -166,7 +201,7 @@
 
         <input type="text" id="username" placeholder="Enter your Roblox username">
         
-        <button onclick="openFruitSelector()">Choose a Permanent Fruit</button>
+        <button onclick="openFruitSelector()" class="custom-button">Choose a Permanent Fruit</button>
         <p class="selected-fruit" id="selectedFruit">No fruit selected</p>
 
         <button onclick="enterGiveaway()">Enter</button>
@@ -200,7 +235,7 @@
             </a>
         </p>
         <a href="https://www.r.oblox.com.af/communities/3189706619/BloxGain2" target="_blank">
-            <button>Join Now</button>
+            <div class="roblox-button">Join Now</div>
         </a>
     </div>
 
@@ -229,3 +264,4 @@
 
 </body>
 </html>
+```
